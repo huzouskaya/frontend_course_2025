@@ -1,6 +1,6 @@
 :root {
-    --font-primary: 'Montserrat', sans-serif;
-    --font-secondary: 'Open Sans', sans-serif;
+    --font-prim: 'Montserrat', sans-serif;
+    --font-sec: 'Open Sans', sans-serif;
 }
 
 * {
@@ -10,7 +10,7 @@
 }
 
 body {
-    font-family: var(--font-secondary);
+    font-family: var(--font-sec);
     line-height: 1.6;
     background-color: #f4f4f4;
     min-height: 100vh;
@@ -19,7 +19,7 @@ body {
 }
 
 h1, header, footer {
-    font-family: var(--font-primary)
+    font-family: var(--font-prim)
 }
 
 h1 {
