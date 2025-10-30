@@ -1,3 +1,8 @@
+:root {
+    --font-primary: 'Montserrat', sans-serif;
+    --font-secondary: 'Open Sans', sans-serif;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,12 +10,16 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: var(--font-secondary);
     line-height: 1.6;
     background-color: #f4f4f4;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+}
+
+h1, header, footer {
+    font-family: var(--font-primary)
 }
 
 h1 {
@@ -79,6 +88,11 @@ button {
 
 button:hover {
     background-color: #e1f1dc;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 footer {
