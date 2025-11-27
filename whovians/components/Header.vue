@@ -20,14 +20,15 @@
     </header>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+@use '~/assets/scss/mixins' as m;
+
 .header {
     width: 1440px;
     height: 97px;
     padding: 24px 88px;
     background: white;
-    display: flex;
-    align-items: center;
+    @include m.flex-center;
     justify-content: center;
 }
 
@@ -36,13 +37,12 @@
     height: 49px;
     display: flex;
     margin: 10px 0;
-    align-items: center;
+    @include m.flex-center;
     justify-content: space-between;
 }
 
 .logo-nav {
-    display: flex;
-    align-items: center;
+    @include m.flex-center;
     padding: 5px 0;
     gap: 80px;
     width: 624px;
@@ -50,15 +50,8 @@
     justify-content: center;
 }
 
-/* .logo {
-    font-family: var(--font-prim);
-    font-size: 24px;
-    font-weight: 700;
-    color: #333;
-} */
-
 .nav-menu {
-    display: flex;
+    @include m.flex-center;
     list-style: none;
     gap: 24px;
     margin: 0;
@@ -68,17 +61,12 @@
 }
 
 .nav-menu a {
-    font-family: var(--font-sec);
-    font-size: 16px;
-    font-weight: 400;
-    color: #666666;
+    @include m.text-style(var(--font-sec), 16px, 400, 1.2, #666666);
     text-decoration: none;
-    line-height: 1.2;
 }
 
 .header-contacts {
-    display: flex;
-    align-items: center;
+    @include m.flex-center;
     gap: 32px;
     width: 386px;
     height: 49px;
@@ -87,27 +75,12 @@
 }
 
 .phone {
-    font-family: var(--font-prim);
-    font-size: 14px;
-    font-weight: 400;
-    color: #254741;
-    line-height: 1.2;
+    @include m.flex-center;
+    @include m.text-style(var(--font-prim), 14px, 400, 1.2, #254741);
     gap: 8px;
 }
 
 .cta-button {
-    background: #029F59;
-    border: none;
-    border-radius: 10px;
-    padding: 16px 40px;
-    font-family: var(--font-prim);
-    font-size: 14px;
-    font-weight: 400;
-    color: #FFFFFF;
-    line-height: 14px;
-    letter-spacing: 0.15px;
-    cursor: pointer;
-    width: 204px;
-    height: 49px;
+    @include m.button-style(#029F59, #FFFFFF, 204px, 49px);
 }
 </style>
