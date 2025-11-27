@@ -2,7 +2,10 @@
     <header class="header">
         <nav class="nav">
         <div class="logo-nav">
-            <div class="logo"><img src="/images/logo.png" alt="zagdom" width="160" height="39" loading="lazy"></div>
+            <div class="logo">
+                <!-- <DLogoIcon class="logo-icon" preserveColors/> -->
+                <img src="/images/logo_dark.svg" alt="zagdom">
+            </div>
             <ul class="nav-menu">
                 <li><a href="#">Реализованные проекты</a></li>
                 <li><a href="#">Новости</a></li>
@@ -11,7 +14,7 @@
         </div>
         <div class="header-contacts">
             <div class="phone">
-                <img src="/images/phone.png" alt="phone" width="16" height="16" loading="lazy">
+                <img src="/images/phone.svg" alt="phone" width="16" height="16" loading="lazy">
                 +7 (900) 900-90-90
             </div>
             <button class="cta-button">Оставить заявку</button>
@@ -19,6 +22,10 @@
         </nav>
     </header>
 </template>
+
+<script setup>
+import DLogoIcon from '../assets/icons/logo_dark.svg'
+</script>
 
 <style scoped lang="scss">
 @use '../assets/scss/mixins' as m;
@@ -49,6 +56,11 @@
     width: 624px;
     height: 39px;
     justify-content: center;
+}
+
+.logo-icon {
+    width: 160px;
+    height: 39px;
 }
 
 .nav-menu {

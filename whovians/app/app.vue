@@ -4,8 +4,6 @@
     <main class="main-content">
       <div class="container">
         <h1>Whovians place</h1>
-        <p>В ожидании новостей по вселенной Доктора Кто</p><br>
-        <img src="/images/doctorwho.jpg" alt="13 докторов" loading="lazy" width="750px">
       </div>
     </main>
     <Footer />
