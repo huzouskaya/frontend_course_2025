@@ -1,10 +1,11 @@
 <template>
-  <div>
+  <div class="page-wrapper">
     <Header />
-    <main class="main-layout">
-      <Sidebar />
-      <MainContent />
-      <Gallery />
+    <main class="main-content">
+      <div class="container">
+        <h1>Whovians place</h1>
+        <p>В ожидании новостей по вселенной Доктора Кто</p>
+      </div>
     </main>
     <Footer />
   </div>
@@ -12,9 +13,6 @@
 
 <script setup>
 import Header from '../components/Header.vue'
-import Sidebar from '../components/Sidebar.vue'
-import MainContent from '../components/MainContent.vue'
-import Gallery from '../components/Gallery.vue'
 import Footer from '../components/Footer.vue'
 </script>
 
@@ -30,18 +28,32 @@ import Footer from '../components/Footer.vue'
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   font-family: var(--font-sec);
   line-height: 1.6;
   background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-.main-layout {
-  display: flex;
-  align-items: stretch;
+.main-content {
   flex: 1;
+  padding: 2rem 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 </style>
