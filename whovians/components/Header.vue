@@ -21,7 +21,7 @@
 </template>
 
 <style scoped lang="scss">
-@use '~/assets/scss/mixins' as m;
+@use '../assets/scss/mixins' as m;
 
 .header {
     width: 1440px;
