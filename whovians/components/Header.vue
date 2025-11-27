@@ -30,6 +30,7 @@
     background: white;
     @include m.flex-center;
     justify-content: center;
+    margin: 0 auto;
 }
 
 .nav {
