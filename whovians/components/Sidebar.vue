@@ -9,12 +9,11 @@
     </section>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+@use '../src/styles/mixins' as *;
+
 .sidebar {
-    background: rgb(67, 146, 88);
-    border: 2px solid #225b10;
-    padding: 1rem;
-    margin: 0.5rem 1rem;
+    @include block-style(rgb(67, 146, 88), #225b10, 1rem, 0.5rem 1rem);
     flex: 1;
 }
 

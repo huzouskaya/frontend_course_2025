@@ -1,0 +1,24 @@
+@mixin block-style($bg-color, $border-color, $padding: 1rem, $margin: 0.5rem 1rem) {
+    background: $bg-color;
+    border: 2px solid $border-color;
+    padding: $padding;
+    margin: $margin;
+}
+
+@mixin button-style($bg-color, $hover-bg-color, $text-color: #fff, $padding: 0.5rem 1rem) {
+    background-color: $bg-color;
+    color: $text-color;
+    padding: $padding;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: $hover-bg-color;
+    }
+}
+
+@mixin heading-style($font-size: 60px, $font-family: var(--font-prim)) {
+    font-family: $font-family;
+    font-size: $font-size;
+}
