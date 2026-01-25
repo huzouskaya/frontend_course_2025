@@ -125,7 +125,7 @@ a { text-decoration: none; color: inherit; }
     margin: 0;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1080px) {
     .footer-grid,
     .footer-bottom {
         grid-template-columns: 1fr;

@@ -173,7 +173,7 @@
     transform: translateX(0);
 }
 
-@include m.media-breakpoint-up(lg) {
+@include m.media-breakpoint(lg) {
     .menu-toggle {
         display: none;
     }
