@@ -35,3 +35,22 @@
         flex-direction: row;
     }
 }
+
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 1040px,
+    xl: 1200px
+);
+
+@mixin media-breakpoint-up($name) {
+    $min: map-get($grid-breakpoints, $name);
+    @if $min != 0 {
+        @media (min-width: #{$min}) {
+            @content;
+        }
+    } @else {
+        @content;
+    }
+}
