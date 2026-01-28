@@ -4,12 +4,11 @@
     </footer>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+@use '../src/styles/mixins' as *;
+
 footer {
-    background-color: #126673;
-    border: 2px solid #052024;
-    padding: 1rem;
-    margin: 0.5rem 1rem;
+    @include block-style(#126673, #052024, 1rem, 0.5rem 1rem);
     min-height: max-content;
     font-family: var(--font-prim);
 }
