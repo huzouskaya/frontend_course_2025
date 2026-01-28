@@ -1,3 +1,5 @@
+@use "sass:map";
+
 @mixin text-style($font-family, $font-size, $font-weight, $line-height: null, $color: null) {
     font-family: $font-family;
     font-size: $font-size;
@@ -26,6 +28,22 @@
     letter-spacing: 0.15px;
 }
 
+@mixin burger-icon($width: 24px, $height: 3px, $gap: 5px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: $gap;
+    
+    span {
+        display: block;
+        height: $height;
+        width: $width;
+        background: currentColor;
+        border-radius: 1px;
+    }
+}
+
 @mixin flex-center($direction: row) {
     display: flex;
     align-items: center;
@@ -45,7 +63,7 @@ $grid-breakpoints: (
 );
 
 @mixin media-breakpoint($name) {
-    $min: map-get($grid-breakpoints, $name);
+    $min: map.get($grid-breakpoints, $name);
     @if $min != 0 {
         @media (min-width: #{$min}) {
             @content;
