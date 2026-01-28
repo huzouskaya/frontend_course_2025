@@ -1,9 +1,6 @@
 <script setup>
 import NavLinks from './NavLinks.vue'
 import ContactItems from './ContactItems.vue'
-
-const phone = '+7 (900) 900-90-90'
-const email = 'info@gmail.com'
 </script>
 
 <template>
@@ -13,10 +10,7 @@ const email = 'info@gmail.com'
                 <img src="/images/logo_white.svg" alt="zagdom" class="logo-icon" />
             </div>
 
-            <!-- Используем NavLinks компонент -->
             <NavLinks class="nav-links" />
-
-            <!-- Используем ContactItems компонент -->
             <ContactItems class="footer-contacts" />
 
             <button class="cta-button">Оставить заявку</button>

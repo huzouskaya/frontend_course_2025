@@ -44,7 +44,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
 import NavLinks from './NavLinks.vue'
 import ContactItems from './ContactItems.vue'
 </script>

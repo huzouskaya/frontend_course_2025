@@ -114,8 +114,6 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    // align-items: center;
-    // text-align: center;
 }
 
 .stat-icon {
@@ -123,7 +121,6 @@
     height: 24px;
     margin-bottom: 32px;
     display: flex;
-    // align-items: center;
     justify-content: center;
     
     @include m.media-breakpoint(md) {
