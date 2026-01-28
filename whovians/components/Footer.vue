@@ -1,4 +1,7 @@
 <script setup>
+import NavLinks from './NavLinks.vue'
+import ContactItems from './ContactItems.vue'
+
 const phone = '+7 (900) 900-90-90'
 const email = 'info@gmail.com'
 </script>
@@ -10,26 +13,11 @@ const email = 'info@gmail.com'
                 <img src="/images/logo_white.svg" alt="zagdom" class="logo-icon" />
             </div>
 
-            <ul class="nav-links">
-                <li><a href="#">Реализованные проекты</a></li>
-                <li><a href="#">Новости</a></li>
-                <li><a href="#">Контакты</a></li>
-            </ul>
+            <!-- Используем NavLinks компонент -->
+            <NavLinks class="nav-links" />
 
-            <div class="footer-contacts">
-                <div class="contact-item">
-                    <img src="/images/phone.svg" alt="Телефон" class="icon" />
-                    <a :href="`tel:${phone}`">{{ phone }}</a>
-                </div>
-                <div class="contact-item">
-                    <img src="/images/email.svg" alt="Email" class="icon" />
-                    <a :href="`mailto:${email}`">{{ email }}</a>
-                </div>
-                <div class="contact-item">
-                    <img src="/images/place.svg" alt="Адрес" class="icon" />
-                    <span>г. Владивосток<br />ул. Выселковая 49, стр. 3</span>
-                </div>
-            </div>
+            <!-- Используем ContactItems компонент -->
+            <ContactItems class="footer-contacts" />
 
             <button class="cta-button">Оставить заявку</button>
         </div>
@@ -68,6 +56,7 @@ a { text-decoration: none; color: inherit; }
     align-items: flex-start;
 }
 
+/* Стили для вложенных компонентов */
 .nav-links {
     list-style: none;
     margin: 0;
@@ -77,7 +66,7 @@ a { text-decoration: none; color: inherit; }
     gap: 24px;
 }
 
-.nav-links a {
+.nav-links :deep(a) {
     @include m.text-style(var(--font-sec), 16px, 400, 1.2, rgba(255, 255, 255, 0.6));
 }
 
@@ -87,13 +76,13 @@ a { text-decoration: none; color: inherit; }
     gap: 24px;
 }
 
-.contact-item {
+.footer-contacts :deep(.contact-item) {
     @include m.flex-center;
     gap: 8px;
     @include m.text-style(var(--font-prim), 14px, 400, 1.2, #ffffff);
 }
 
-.icon {
+.footer-contacts :deep(.icon) {
     width: 16px;
     height: 16px;
     flex-shrink: 0;
