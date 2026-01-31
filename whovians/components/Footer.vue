@@ -44,7 +44,6 @@ a { text-decoration: none; color: inherit; }
     width: 100%;
 }
 
-/* МОБИЛКА (по умолчанию) */
 .footer-grid,
 .footer-bottom {
     display: grid;
