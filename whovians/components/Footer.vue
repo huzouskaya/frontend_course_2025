@@ -40,17 +40,19 @@ a { text-decoration: none; color: inherit; }
 .footer {
     background: #254741;
     color: white;
-    padding: 40px 88px 32px;
+    padding: 40px 24px 32px;
     width: 100%;
 }
 
+/* МОБИЛКА (по умолчанию) */
 .footer-grid,
 .footer-bottom {
     display: grid;
-    grid-template-columns: 160px 1fr 1fr 204px;
-    gap: 80px;
+    grid-template-columns: 1fr;
+    gap: 32px;
     max-width: 1264px;
     margin: 0 auto;
+    text-align: left;
 }
 
 .footer-grid {
@@ -95,14 +97,15 @@ a { text-decoration: none; color: inherit; }
 }
 
 .cta-button {
-    @include m.button-style(#029f59, #ffffff, 204px, 49px);
+    @include m.button-style(#029f59, #ffffff, 100%, 49px);
     border-radius: 10px;
     padding: 16px 40px;
     justify-self: start;
+    width: 204px;
 }
 
 .footer-bottom {
-    margin-top: 40px;
+    margin-top: 24px;
     color: rgba(255, 255, 255, 0.6);
     font-size: 14px;
     line-height: 1.2;
@@ -115,16 +118,19 @@ a { text-decoration: none; color: inherit; }
     margin: 0;
 }
 
-@media (max-width: 1080px) {
+@include m.media-breakpoint(lg) {
+    .footer {
+        padding: 40px 88px 32px;
+    }
+    
     .footer-grid,
     .footer-bottom {
-        grid-template-columns: 1fr;
-        gap: 32px;
-        text-align: left;
+        grid-template-columns: 160px 1fr 1fr 204px;
+        gap: 80px;
     }
 
     .footer-bottom {
-        margin-top: 24px;
+        margin-top: 40px;
     }
 }
 </style>
