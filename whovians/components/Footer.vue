@@ -1,22 +1,23 @@
 <script setup>
 import NavLinks from './NavLinks.vue'
 import ContactItems from './ContactItems.vue'
+import { computed } from 'vue'
+import logoSvg from '../public/images/logo.svg?raw'
 
-const phone = '+7 (900) 900-90-90'
-const email = 'info@gmail.com'
+const logoSrc = computed(() => {
+    const whiteSvg = logoSvg.replace(/#254741/g, '#FFFFFF')
+    return `data:image/svg+xml;base64,${btoa(whiteSvg)}`
+})
 </script>
 
 <template>
     <footer class="footer">
         <div class="footer-grid">
             <div class="logo">
-                <img src="/images/logo_white.svg" alt="zagdom" class="logo-icon" />
+                <img :src="logoSrc" alt="загдом" class="logo-icon" />
             </div>
 
-            <!-- Используем NavLinks компонент -->
             <NavLinks class="nav-links" />
-
-            <!-- Используем ContactItems компонент -->
             <ContactItems class="footer-contacts" />
 
             <button class="cta-button">Оставить заявку</button>
@@ -56,7 +57,6 @@ a { text-decoration: none; color: inherit; }
     align-items: flex-start;
 }
 
-/* Стили для вложенных компонентов */
 .nav-links {
     list-style: none;
     margin: 0;
@@ -88,9 +88,10 @@ a { text-decoration: none; color: inherit; }
     flex-shrink: 0;
 }
 
-.logo .logo-icon {
+.logo-icon {
     width: 160px;
     height: 39px;
+    display: block;
 }
 
 .cta-button {
