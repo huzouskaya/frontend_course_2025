@@ -1,13 +1,28 @@
 <script setup>
 import NavLinks from './NavLinks.vue'
 import ContactItems from './ContactItems.vue'
+
+function makeLogoWhite(event) {
+    const svg = event.target.contentDocument
+    if (!svg) return
+    
+    const darkElements = svg.querySelectorAll('[fill="#254741"]')
+    darkElements.forEach(el => {
+        el.setAttribute('fill', '#FFFFFF')
+    })
+}
 </script>
 
 <template>
     <footer class="footer">
         <div class="footer-grid">
             <div class="logo">
-                <img src="/images/logo_white.svg" alt="zagdom" class="logo-icon" />
+                <object 
+                    data="/images/logo.svg" 
+                    type="image/svg+xml" 
+                    class="logo-object"
+                    @load="makeLogoWhite"
+                />
             </div>
 
             <NavLinks class="nav-links" />
@@ -50,7 +65,6 @@ a { text-decoration: none; color: inherit; }
     align-items: flex-start;
 }
 
-/* Стили для вложенных компонентов */
 .nav-links {
     list-style: none;
     margin: 0;

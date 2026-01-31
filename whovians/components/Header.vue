@@ -21,7 +21,7 @@
         </ul>
         <div class="header-contacts">
           <div class="phone">
-            <img src="/images/phone.png" alt="phone" width="16" height="16" loading="lazy" />
+            <img src="/images/phone.svg" alt="phone" width="16" height="16" loading="lazy" />
             +7 (900) 900-90-90
           </div>
           <button class="cta-button">Оставить заявку</button>
