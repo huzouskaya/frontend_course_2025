@@ -56,4 +56,8 @@ body {
   margin: 0 auto;
   padding: 0 2rem;
 }
+
+.no-scroll {
+  overflow: hidden;
+}
 </style>

@@ -1,10 +1,16 @@
 <template>
   <header class="header">
-    <input type="checkbox" id="drawer-toggle" class="drawer-checkbox" />
+    <input 
+      type="checkbox" 
+      id="drawer-toggle" 
+      class="drawer-checkbox" 
+      v-model="drawerOpen"
+      @change="toggleDrawer"
+    />
 
     <nav class="nav">
       <div class="logo">
-        <img src="/images/logo.png" alt="zagdom" width="160" height="39" loading="lazy" />
+        <img src="/images/logo.svg" alt="zagdom" width="160" height="39" loading="lazy" />
       </div>
 
       <label for="drawer-toggle" class="menu-toggle">
@@ -44,8 +50,32 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import NavLinks from './NavLinks.vue'
 import ContactItems from './ContactItems.vue'
+
+const drawerOpen = ref(false)
+
+function toggleDrawer() {
+  if (drawerOpen.value) {
+    document.body.classList.add('no-scroll')
+  } else {
+    document.body.classList.remove('no-scroll')
+  }
+}
+
+watch(drawerOpen, (newVal) => {
+  if (newVal) {
+    document.body.classList.add('no-scroll')
+  } else {
+    document.body.classList.remove('no-scroll')
+  }
+})
+
+import { onUnmounted } from 'vue'
+onUnmounted(() => {
+  document.body.classList.remove('no-scroll')
+})
 </script>
 
 <style scoped lang="scss">

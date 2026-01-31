@@ -1,28 +1,20 @@
 <script setup>
 import NavLinks from './NavLinks.vue'
 import ContactItems from './ContactItems.vue'
+import { computed } from 'vue'
+import logoSvg from '../public/images/logo.svg?raw'
 
-function makeLogoWhite(event) {
-    const svg = event.target.contentDocument
-    if (!svg) return
-    
-    const darkElements = svg.querySelectorAll('[fill="#254741"]')
-    darkElements.forEach(el => {
-        el.setAttribute('fill', '#FFFFFF')
-    })
-}
+const logoSrc = computed(() => {
+    const whiteSvg = logoSvg.replace(/#254741/g, '#FFFFFF')
+    return `data:image/svg+xml;base64,${btoa(whiteSvg)}`
+})
 </script>
 
 <template>
     <footer class="footer">
         <div class="footer-grid">
             <div class="logo">
-                <object 
-                    data="/images/logo.svg" 
-                    type="image/svg+xml" 
-                    class="logo-object"
-                    @load="makeLogoWhite"
-                />
+                <img :src="logoSrc" alt="загдом" class="logo-icon" />
             </div>
 
             <NavLinks class="nav-links" />
@@ -48,17 +40,18 @@ a { text-decoration: none; color: inherit; }
 .footer {
     background: #254741;
     color: white;
-    padding: 40px 88px 32px;
+    padding: 40px 24px 32px;
     width: 100%;
 }
 
 .footer-grid,
 .footer-bottom {
     display: grid;
-    grid-template-columns: 160px 1fr 1fr 204px;
-    gap: 80px;
+    grid-template-columns: 1fr;
+    gap: 32px;
     max-width: 1264px;
     margin: 0 auto;
+    text-align: left;
 }
 
 .footer-grid {
@@ -96,20 +89,22 @@ a { text-decoration: none; color: inherit; }
     flex-shrink: 0;
 }
 
-.logo .logo-icon {
+.logo-icon {
     width: 160px;
     height: 39px;
+    display: block;
 }
 
 .cta-button {
-    @include m.button-style(#029f59, #ffffff, 204px, 49px);
+    @include m.button-style(#029f59, #ffffff, 100%, 49px);
     border-radius: 10px;
     padding: 16px 40px;
     justify-self: start;
+    width: 204px;
 }
 
 .footer-bottom {
-    margin-top: 40px;
+    margin-top: 24px;
     color: rgba(255, 255, 255, 0.6);
     font-size: 14px;
     line-height: 1.2;
@@ -122,16 +117,19 @@ a { text-decoration: none; color: inherit; }
     margin: 0;
 }
 
-@media (max-width: 1080px) {
+@include m.media-breakpoint(lg) {
+    .footer {
+        padding: 40px 88px 32px;
+    }
+    
     .footer-grid,
     .footer-bottom {
-        grid-template-columns: 1fr;
-        gap: 32px;
-        text-align: left;
+        grid-template-columns: 160px 1fr 1fr 204px;
+        gap: 80px;
     }
 
     .footer-bottom {
-        margin-top: 24px;
+        margin-top: 40px;
     }
 }
 </style>
