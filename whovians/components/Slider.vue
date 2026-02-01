@@ -170,6 +170,16 @@ function goTo(index) {
     &.next {
         right: 32px;
     }
+
+    @include m.media-breakpoint(xs) {
+        display: none;
+    }
+}
+
+@include m.media-breakpoint(md) {
+    .control-btn {
+        display: flex;
+    }
 }
 
 .pagination {

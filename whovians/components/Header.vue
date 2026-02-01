@@ -13,13 +13,8 @@
         <img src="/images/logo.svg" alt="zagdom" width="160" height="39" loading="lazy" />
       </div>
 
-      <label for="drawer-toggle" class="menu-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-      </label>
-
-      <div class="nav-content desktop-only">
+      <!-- Вся desktop-навигация -->
+      <div class="desktop-only">
         <ul class="nav-menu">
           <li><a href="#">Реализованные проекты</a></li>
           <li><a href="#">Новости</a></li>
@@ -33,6 +28,13 @@
           <button class="cta-button">Оставить заявку</button>
         </div>
       </div>
+
+      <!-- БУРГЕР — САМЫЙ ПОСЛЕДНИЙ ЭЛЕМЕНТ В .nav -->
+      <label for="drawer-toggle" class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
     </nav>
 
     <label for="drawer-toggle" class="drawer-backdrop"></label>
@@ -50,29 +52,16 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch, onUnmounted } from 'vue'
 import NavLinks from './NavLinks.vue'
 import ContactItems from './ContactItems.vue'
 
 const drawerOpen = ref(false)
 
-function toggleDrawer() {
-  if (drawerOpen.value) {
-    document.body.classList.add('no-scroll')
-  } else {
-    document.body.classList.remove('no-scroll')
-  }
-}
-
 watch(drawerOpen, (newVal) => {
-  if (newVal) {
-    document.body.classList.add('no-scroll')
-  } else {
-    document.body.classList.remove('no-scroll')
-  }
+  document.body.classList.toggle('no-scroll', newVal)
 })
 
-import { onUnmounted } from 'vue'
 onUnmounted(() => {
   document.body.classList.remove('no-scroll')
 })
@@ -86,8 +75,8 @@ onUnmounted(() => {
 .header {
   width: 100%;
   background: white;
-  padding: 0 16px;
   position: relative;
+  z-index: 100;
 }
 
 .nav {
@@ -97,6 +86,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 16px;
 }
 
 .logo img {
@@ -105,19 +95,13 @@ onUnmounted(() => {
   display: block;
 }
 
-.desktop-only {
-  display: none;
-}
-
 .menu-toggle {
   @include m.button-style(#029F59, white, 59px, 49px, 10px);
   @include m.burger-icon(24px, 3px, 5px);
   padding: 0;
 }
 
-.drawer-checkbox {
-  display: none;
-}
+.drawer-checkbox { display: none; }
 
 .drawer-backdrop {
   position: fixed;
@@ -191,16 +175,73 @@ onUnmounted(() => {
   transform: translateX(0);
 }
 
-@include m.media-breakpoint(lg) {
-  .menu-toggle {
+.cta-button {
+  display: block;
+  @include m.button-style(#029F59, #FFFFFF, 204px, 49px);
+}
+
+@include m.media-breakpoint(xs) {
+  .desktop-only {
     display: none;
+  }
+
+  .nav-menu,
+  .cta-button {
+    display: none;
+  }
+}
+
+@include m.media-breakpoint(sm) {
+  .nav { 
+    display: flex;
+    padding: 0 20px; 
   }
 
   .desktop-only {
     display: flex;
     align-items: center;
+    gap: 16px;
+  }
+
+  .header-contacts {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .phone {
+    display: flex;
+    align-items: center;
+    @include m.text-style(var(--font-prim), 14px, 400, 1.2, #254741);
+    gap: 6px;
+  }
+}
+
+@include m.media-breakpoint(md) {
+  .nav { 
+    padding: 0 24px; 
+  }
+
+  .header-contacts { gap: 16px; }
+
+  .cta-button {
+    display: flex;
+  }
+}
+
+@include m.media-breakpoint(lg) {
+  .nav { 
+    padding: 0 32px; 
+  }
+}
+
+@include m.media-breakpoint(xl) {
+  .menu-toggle {
+    display: none;
+  }
+
+  .desktop-only {
     gap: 80px;
-    height: 100%;
   }
 
   .nav-menu {
@@ -222,26 +263,12 @@ onUnmounted(() => {
   }
 
   .header-contacts {
-    display: flex;
-    align-items: center;
     gap: 24px;
-    height: 100%;
-  }
-
-  .phone {
-    display: flex;
-    align-items: center;
-    @include m.text-style(var(--font-prim), 14px, 400, 1.2, #254741);
-    gap: 8px;
-  }
-
-  .cta-button {
-    @include m.button-style(#029F59, #FFFFFF, 204px, 49px);
   }
 
   .drawer,
   .drawer-backdrop {
-    display: none;
+    display: none !important;
   }
 }
 </style>
