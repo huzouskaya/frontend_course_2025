@@ -97,10 +97,8 @@ function goTo(index) {
 .slide {
     position: relative;
     width: 100%;
-    height: 600px;
     background: #254741;
     overflow: hidden;
-    
     @include m.media-breakpoint(md) {
         height: 700px;
     }
@@ -176,12 +174,6 @@ function goTo(index) {
     }
 }
 
-@include m.media-breakpoint(md) {
-    .control-btn {
-        display: flex;
-    }
-}
-
 .pagination {
     position: absolute;
     bottom: 20px;
@@ -211,6 +203,17 @@ function goTo(index) {
     &.active {
         background: #029F59;
         transform: scale(1.2);
+    }
+}
+
+@include m.media-breakpoint(md) {
+    .control-btn {
+        display: flex;
+    }
+
+    .slider {
+        margin-left: 50px;
+        margin-right: 50px;
     }
 }
 </style>

@@ -4,6 +4,8 @@
     <main class="main-content">
       <Slider />
       <Stats />
+      <Projects />
+      <News />
     </main>
     <Footer />
   </div>
@@ -14,6 +16,8 @@ import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
 import Slider from '../components/Slider.vue'
 import Stats from '../components/Stats.vue'
+import Projects from '../components/Projects.vue'
+import News from '../components/News.vue'
 </script>
 
 <style>
@@ -38,6 +42,7 @@ body {
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
 }
 
 .page-wrapper {
