@@ -24,6 +24,14 @@ import News from '../components/News.vue'
 :root {
   --font-prim: 'Montserrat', sans-serif;
   --font-sec: 'Open Sans', sans-serif;
+
+  --text-color-prim: #000000;
+  --text-color-sec: #666666; 
+
+  --bg-color-light: #f5f7f3;
+
+  --main-color: #029F59;
+  --dark-main-color: #254741;
 }
 
 * {

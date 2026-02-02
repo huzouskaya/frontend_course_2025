@@ -47,10 +47,13 @@ const calendarIcon = ref('/images/calendar.svg')
 
 .stats-block {
     background: white;
-    padding: 80px 0;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
 
     @include m.media-breakpoint(md) {
-        padding: 120px 0;
+        width: 80%;
     }
 }
 

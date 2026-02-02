@@ -82,7 +82,7 @@ function goTo(index) {
 
 .slider {
     padding: 0 16px;
-    max-width: 1264px;
+    width: 90%;
     margin: 0 auto;
     margin-top: 0;
     padding-top: 0;
@@ -212,8 +212,7 @@ function goTo(index) {
     }
 
     .slider {
-        margin-left: 50px;
-        margin-right: 50px;
+        width: 80%;
     }
 }
 </style>

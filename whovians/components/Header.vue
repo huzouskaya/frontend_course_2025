@@ -96,7 +96,7 @@ onUnmounted(() => {
 }
 
 .menu-toggle {
-  @include m.button-style(#029F59, white, 59px, 49px, 10px);
+  @include m.button-style(var(--main-color), white, 59px, 49px, 10px);
   @include m.burger-icon(24px, 3px, 5px);
   padding: 0;
 }
@@ -109,7 +109,7 @@ onUnmounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.4);
   z-index: 999;
   opacity: 0;
   visibility: hidden;
@@ -128,7 +128,7 @@ onUnmounted(() => {
   height: 100vh;
   width: 80%;
   max-width: 320px;
-  background: #029F59;
+  background: var(--main-color);
   color: white;
   padding: 64px 24px 24px;
   overflow-y: auto;
@@ -177,7 +177,7 @@ onUnmounted(() => {
 
 .cta-button {
   display: block;
-  @include m.button-style(#029F59, #FFFFFF, 204px, 49px);
+  @include m.button-style(var(--main-color), #FFFFFF, 204px, 49px);
 }
 
 @include m.media-breakpoint(xs) {
@@ -212,7 +212,7 @@ onUnmounted(() => {
   .phone {
     display: flex;
     align-items: center;
-    @include m.text-style(var(--font-prim), 14px, 400, 1.2, #254741);
+    @include m.text-style(var(--font-prim), 14px, 400, 1.2, var(--dark-main-color));
     gap: 6px;
   }
 }
@@ -255,7 +255,7 @@ onUnmounted(() => {
   }
 
   .nav-menu a {
-    @include m.text-style(var(--font-sec), 16px, 400, 1.2, #666666);
+    @include m.text-style(var(--font-sec), 16px, 400, 1.2, var(--text-color-sec));
     text-decoration: none;
     display: flex;
     align-items: center;

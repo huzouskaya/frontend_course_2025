@@ -36,7 +36,7 @@ const logoSrc = computed(() => {
 a { text-decoration: none; color: inherit; }
 
 .footer {
-    background: #254741;
+    background: var(--dark-main-color);
     color: white;
     padding: 40px 24px 32px;
     width: 100%;
@@ -50,7 +50,7 @@ a { text-decoration: none; color: inherit; }
 
 .footer-bottom {
     margin-top: 24px;
-    color: rgba(255, 255, 255, 0.6);
+    color: #ffffff;
     font-size: 14px;
     line-height: 1.2;
     font-family: var(--font-sec);
@@ -68,7 +68,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .cta-button {
-    @include m.button-style(#029f59, #ffffff, 204px, 49px);
+    @include m.button-style(var(--main-color), #ffffff, 204px, 49px);
     padding: 16px 40px;
 }
 
