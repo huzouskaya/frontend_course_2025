@@ -13,18 +13,14 @@
         <img src="/images/logo.svg" alt="zagdom" width="160" height="39" loading="lazy" />
       </div>
 
-      <label for="drawer-toggle" class="menu-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-      </label>
-
-      <div class="nav-content desktop-only">
-        <ul class="nav-menu">
-          <li><a href="#">Реализованные проекты</a></li>
-          <li><a href="#">Новости</a></li>
-          <li><a href="#">Контакты</a></li>
-        </ul>
+      <div class="nav-right">
+        <div class="desktop-only">
+          <ul class="nav-menu">
+            <li><a href="#">Реализованные проекты</a></li>
+            <li><a href="#">Новости</a></li>
+            <li><a href="#">Контакты</a></li>
+          </ul>
+        </div>
         <div class="header-contacts">
           <div class="phone">
             <img src="/images/phone.svg" alt="phone" width="16" height="16" loading="lazy" />
@@ -32,6 +28,12 @@
           </div>
           <button class="cta-button">Оставить заявку</button>
         </div>
+
+        <label for="drawer-toggle" class="menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
       </div>
     </nav>
 
@@ -50,29 +52,16 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch, onUnmounted } from 'vue'
 import NavLinks from './NavLinks.vue'
 import ContactItems from './ContactItems.vue'
 
 const drawerOpen = ref(false)
 
-function toggleDrawer() {
-  if (drawerOpen.value) {
-    document.body.classList.add('no-scroll')
-  } else {
-    document.body.classList.remove('no-scroll')
-  }
-}
-
 watch(drawerOpen, (newVal) => {
-  if (newVal) {
-    document.body.classList.add('no-scroll')
-  } else {
-    document.body.classList.remove('no-scroll')
-  }
+  document.body.classList.toggle('no-scroll', newVal)
 })
 
-import { onUnmounted } from 'vue'
 onUnmounted(() => {
   document.body.classList.remove('no-scroll')
 })
@@ -86,8 +75,8 @@ onUnmounted(() => {
 .header {
   width: 100%;
   background: white;
-  padding: 0 16px;
   position: relative;
+  z-index: 100;
 }
 
 .nav {
@@ -96,7 +85,14 @@ onUnmounted(() => {
   height: 64px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  padding: 0 16px;
+}
+
+.nav-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 24px;
 }
 
 .logo img {
@@ -105,19 +101,13 @@ onUnmounted(() => {
   display: block;
 }
 
-.desktop-only {
-  display: none;
-}
-
 .menu-toggle {
-  @include m.button-style(#029F59, white, 59px, 49px, 10px);
+  @include m.button-style(var(--main-color), white, 59px, 49px, 10px);
   @include m.burger-icon(24px, 3px, 5px);
   padding: 0;
 }
 
-.drawer-checkbox {
-  display: none;
-}
+.drawer-checkbox { display: none; }
 
 .drawer-backdrop {
   position: fixed;
@@ -144,7 +134,7 @@ onUnmounted(() => {
   height: 100vh;
   width: 80%;
   max-width: 320px;
-  background: #029F59;
+  background: var(--main-color);
   color: white;
   padding: 64px 24px 24px;
   overflow-y: auto;
@@ -191,57 +181,159 @@ onUnmounted(() => {
   transform: translateX(0);
 }
 
-@include m.media-breakpoint(lg) {
-  .menu-toggle {
+.cta-button {
+  display: block;
+  @include m.button-style(var(--main-color), white, 204px, 49px);
+}
+
+@include m.media-breakpoint(xs) {
+  .desktop-only {
     display: none;
+  }
+
+  .nav-menu,
+  .cta-button {
+    display: none;
+  }
+}
+
+@include m.media-breakpoint(xs) {
+  .desktop-only {
+    display: none;
+  }
+}
+
+@include m.media-breakpoint(sm) {
+  .nav {
+    padding: 0 20px;
   }
 
   .desktop-only {
     display: flex;
     align-items: center;
-    gap: 80px;
-    height: 100%;
+    gap: 16px;
   }
 
-  .nav-menu {
-    display: flex;
-    list-style: none;
-    gap: 24px;
-    margin: 0;
-    padding: 0;
-    align-items: center;
-    height: 100%;
-  }
-
-  .nav-menu a {
-    @include m.text-style(var(--font-sec), 16px, 400, 1.2, #666666);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    height: 100%;
+  .nav-menu,
+  .cta-button {
+    display: none;
   }
 
   .header-contacts {
     display: flex;
     align-items: center;
-    gap: 24px;
-    height: 100%;
+    gap: 8px;
   }
 
   .phone {
     display: flex;
     align-items: center;
     @include m.text-style(var(--font-prim), 14px, 400, 1.2, #254741);
-    gap: 8px;
+    gap: 6px;
+  }
+}
+
+@include m.media-breakpoint(md) {
+  .nav {
+    padding: 0 24px;
+  }
+
+  .nav-menu {
+    display: none;
+  }
+  
+  .header-contacts {
+    gap: 16px;
   }
 
   .cta-button {
-    @include m.button-style(#029F59, #FFFFFF, 204px, 49px);
+    display: block;
+  }
+}
+
+@include m.media-breakpoint(lg) {
+  .nav {
+    padding: 0 32px;
+  }
+
+  .menu-toggle {
+    display: none;
   }
 
   .drawer,
   .drawer-backdrop {
-    display: none;
+    display: none !important;
+  }
+
+  .desktop-only {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+  }
+
+  .nav-menu {
+    display: block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+    width: auto;
+  }
+
+  .nav-menu li {
+    display: inline;
+    margin-right: 24px; 
+  }
+
+  .nav-menu li:nth-child(1) {
+    display: block;     
+    margin-right: 0;
+  }
+
+  .nav-menu a {
+    @include m.text-style(var(--font-sec), 16px, 400, 1.2, var(--description-text-color));
+    text-decoration: none;
+  }
+
+  .header-contacts {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .cta-button {
+    display: block;
+  }
+}
+
+@include m.media-breakpoint(xl) {
+  .desktop-only {
+    flex-direction: row;
+    gap: 80px;
+  }
+
+  .nav-menu {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    align-items: center;
+    height: 100%;
+  }
+
+  .nav-menu li {
+    display: flex;
+    height: 100%;
+  }
+
+  .nav-menu a {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .header-contacts {
+    gap: 24px;
   }
 }
 </style>

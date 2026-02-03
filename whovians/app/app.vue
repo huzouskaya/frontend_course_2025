@@ -19,6 +19,9 @@ import Footer from '../components/Footer.vue'
 :root {
   --font-prim: 'Montserrat', sans-serif;
   --font-sec: 'Open Sans', sans-serif;
+
+  --main-color: #029F59;
+  --description-text-color: #666666;
 }
 
 * {

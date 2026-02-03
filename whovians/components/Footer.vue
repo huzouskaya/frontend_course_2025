@@ -16,10 +16,8 @@ const logoSrc = computed(() => {
             <div class="logo">
                 <img :src="logoSrc" alt="загдом" class="logo-icon" />
             </div>
-
             <NavLinks class="nav-links" />
             <ContactItems class="footer-contacts" />
-
             <button class="cta-button">Оставить заявку</button>
         </div>
 
@@ -46,16 +44,32 @@ a { text-decoration: none; color: inherit; }
 
 .footer-grid,
 .footer-bottom {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 32px;
     max-width: 1264px;
     margin: 0 auto;
+}
+
+.footer-bottom {
+    margin-top: 24px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    line-height: 1.2;
+    font-family: var(--font-sec);
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .footer-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
     align-items: flex-start;
+}
+
+.cta-button {
+    @include m.button-style(var(--main-color), #ffffff, 204px, 49px);
+    padding: 16px 40px;
 }
 
 .nav-links {
@@ -67,14 +81,14 @@ a { text-decoration: none; color: inherit; }
     gap: 24px;
 }
 
-.nav-links :deep(a) {
-    @include m.text-style(var(--font-sec), 16px, 400, 1.2, rgba(255, 255, 255, 0.6));
-}
-
 .footer-contacts {
     display: flex;
     flex-direction: column;
     gap: 24px;
+}
+
+.nav-links :deep(a) {
+    @include m.text-style(var(--font-sec), 16px, 400, 1.2, #ffffff);
 }
 
 .footer-contacts :deep(.contact-item) {
@@ -95,41 +109,63 @@ a { text-decoration: none; color: inherit; }
     display: block;
 }
 
-.cta-button {
-    @include m.button-style(#029f59, #ffffff, 100%, 49px);
-    border-radius: 10px;
-    padding: 16px 40px;
-    justify-self: start;
-    width: 204px;
+.logo { order: 1; }
+.cta-button { order: 4; }
+.nav-links { order: 2; }
+.footer-contacts { order: 3; }
+
+@include m.media-breakpoint(xs) {
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 32px 40px;
+        align-items: start;
+    }
 }
 
-.footer-bottom {
-    margin-top: 24px;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 14px;
-    line-height: 1.2;
-    font-family: var(--font-sec);
+@include m.media-breakpoint(sm) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-bottom {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        margin-left: 0;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .logo { grid-column: 1; grid-row: 1; }
+    .cta-button { grid-column: 2; grid-row: 1; }
+    .nav-links { grid-column: 1; grid-row: 2; }
+    .footer-contacts { grid-column: 2; grid-row: 2; }
+}
+
+@include m.media-breakpoint(lg) {
+    .footer-grid {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 80px;
+    }
+
+    .footer-bottom {
+        width: 65%;
+    }
+
+    .logo { order: 0; flex: 0 0 160px; }
+    .nav-links { order: 0; flex: 1; }
+    .footer-contacts { order: 0; flex: 1; }
+    .cta-button { order: 0; flex: 0 0 204px; }
 }
 
 .copyright,
 .policy,
 .agreement {
     margin: 0;
-}
-
-@include m.media-breakpoint(lg) {
-    .footer {
-        padding: 40px 88px 32px;
-    }
-    
-    .footer-grid,
-    .footer-bottom {
-        grid-template-columns: 160px 1fr 1fr 204px;
-        gap: 80px;
-    }
-
-    .footer-bottom {
-        margin-top: 40px;
-    }
 }
 </style>
