@@ -5,7 +5,7 @@ const news = [
     {
         title: 'Текст заголовка 1',
         description: '<p>Текст описания 1</p>',
-        date: '12 марта 2025',
+        date: '24 марта 2025',
         image: {
         x1: '/images/news/news_1.png',
         x2: '/images/news/news_1@2x.png'
@@ -14,7 +14,7 @@ const news = [
     {
         title: 'Текст заголовка 2',
         description: '<p>Текст описания 2</p>',
-        date: '8 марта 2025',
+        date: '12 марта 2025',
         image: {
         x1: '/images/news/news_2.png',
         x2: '/images/news/news_2@2x.png'
@@ -23,7 +23,7 @@ const news = [
     {
         title: 'Текст заголовка 3',
         description: '<p>Текст описания 3</p>',
-        date: '12 марта 2025',
+        date: '10 марта 2025',
         image: {
         x1: '/images/news/news_1.png',
         x2: '/images/news/news_1@2x.png'
@@ -53,6 +53,7 @@ const news = [
                 :key="index"
                 :title="item.title"
                 :description="item.description"
+                :date="item.date"
                 :image="item.image"
             />
         </div>

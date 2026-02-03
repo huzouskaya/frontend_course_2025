@@ -45,7 +45,6 @@ a { text-decoration: none; color: inherit; }
 }
 
 .footer-bottom {
-    width: 95%;
     margin: 0 auto;
     @include m.media-breakpoint(lg) {
         width: 90%;
