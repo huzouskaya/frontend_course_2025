@@ -10,7 +10,7 @@ defineProps({
   },
   date: {
     type: String,
-    required: true // например: '12 февраля 2025'
+    required: true
   },
   image: {
     type: Object,
