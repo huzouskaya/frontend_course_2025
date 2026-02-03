@@ -68,7 +68,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .cta-button {
-    @include m.button-style(#029f59, #ffffff, 204px, 49px);
+    @include m.button-style(var(--main-color), #ffffff, 204px, 49px);
     padding: 16px 40px;
 }
 
@@ -88,7 +88,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .nav-links :deep(a) {
-    @include m.text-style(var(--font-sec), 16px, 400, 1.2, rgba(255, 255, 255, 0.6));
+    @include m.text-style(var(--font-sec), 16px, 400, 1.2, #ffffff);
 }
 
 .footer-contacts :deep(.contact-item) {
@@ -114,7 +114,7 @@ a { text-decoration: none; color: inherit; }
 .nav-links { order: 2; }
 .footer-contacts { order: 3; }
 
-@include m.media-breakpoint(sm) {
+@include m.media-breakpoint(xs) {
     .footer-grid {
         display: grid;
         grid-template-columns: 1fr;
@@ -123,7 +123,7 @@ a { text-decoration: none; color: inherit; }
     }
 }
 
-@include m.media-breakpoint(md) {
+@include m.media-breakpoint(sm) {
     .footer-grid {
         grid-template-columns: 1fr 1fr;
     }
@@ -132,8 +132,10 @@ a { text-decoration: none; color: inherit; }
         margin-top: 40px;
         display: flex;
         flex-direction: row;
+        justify-content: flex-start;
+        margin-left: 0;
+        width: 100%;
         justify-content: space-between;
-        gap: 20px;
     }
 
     .logo { grid-column: 1; grid-row: 1; }
@@ -142,7 +144,6 @@ a { text-decoration: none; color: inherit; }
     .footer-contacts { grid-column: 2; grid-row: 2; }
 }
 
-
 @include m.media-breakpoint(lg) {
     .footer-grid {
         display: flex;
@@ -150,6 +151,10 @@ a { text-decoration: none; color: inherit; }
         justify-content: space-between;
         align-items: flex-start;
         gap: 80px;
+    }
+
+    .footer-bottom {
+        width: 65%;
     }
 
     .logo { order: 0; flex: 0 0 160px; }
