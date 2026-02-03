@@ -18,14 +18,14 @@ const projects = [
         x2: '/images/projects/project_2@2x.png'
         }
     },
-    // {
-    //     title: 'Заголовок проекта 3',
-    //     description: '<p>Описание проекта 3</p>',
-    //     image: {
-    //     x1: '/images/projects/project_3.png',
-    //     x2: '/images/projects/project_3@2x.png'
-    //     }
-    // }
+    {
+        title: 'Заголовок проекта 3',
+        description: '<p>Описание проекта 3</p>',
+        image: {
+        x1: '/images/projects/project_3.png',
+        x2: '/images/projects/project_3@2x.png'
+        }
+    }
 ]
 </script>
 
@@ -53,13 +53,19 @@ const projects = [
     padding: 2rem 0;
 }
 
-.projects-list, .projects-title {
+.projects-title {
+    width: 90%;
+    margin: 0 auto 24px;
+    text-align: center;
+}
+
+.projects-list {
     width: 90%;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
-    overflow: auto;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 24px;
+    overflow-x: auto;
     padding: 1rem 0;
 }
 
@@ -68,4 +74,16 @@ const projects = [
         width: 80%;
     }
 }
+
+// @include m.media-breakpoint(lg) {
+//     .projects-list {
+//         display: grid;
+//         grid-template-columns: repeat(2, 1fr);
+//         overflow: visible;
+//         gap: 32px;
+//         width: 100%;
+//         min-width: unset;
+//         flex-shrink: 1;
+//     }
+// }
 </style>

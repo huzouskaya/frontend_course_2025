@@ -40,6 +40,8 @@ defineProps({
     border-radius: 12px;
     overflow: hidden;
     flex-direction: row;
+    min-width: 300px;
+    flex-shrink: 0;
 }
 
 .project-text {
@@ -67,6 +69,7 @@ defineProps({
 
 .project-img-wrapper {
     position: relative;
+    height: 200px;
 
     picture,
     img {
