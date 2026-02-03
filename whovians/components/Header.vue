@@ -26,7 +26,7 @@
 @use '../assets/scss/mixins' as m;
 
 .header {
-    width: 100%; /* ← Исправлено: теперь на всю ширину */
+    width: 100%;
     height: 97px;
     padding: 24px 88px;
     background: white;
@@ -37,7 +37,7 @@
 
 .nav {
     width: 100%;
-    max-width: 1264px; /* Сохраняем ограничение по макету, но делаем гибким */
+    max-width: 1264px;
     height: 49px;
     display: flex;
     align-items: center;
@@ -48,19 +48,19 @@
     display: flex;
     align-items: center;
     gap: 80px;
-    height: 100%; /* ← Занимает всю высоту .nav */
+    height: 100%;
 }
 
 .logo {
-    height: 100%; /* ← Важно: чтобы div обёртка соответствовала высоте строки */
+    height: 100%;
     display: flex;
     align-items: center;
 }
 
 .logo img {
-    display: block; /* Убирает подстрочный отступ под изображением */
-    height: 100%;   /* ← Растягиваем по высоте, сохраняя пропорции (или можно оставить как есть, если размеры точные) */
-    width: auto;    /* Сохраняем пропорции */
+    display: block;
+    height: 100%;
+    width: auto;
 }
 
 .nav-menu {

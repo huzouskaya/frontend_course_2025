@@ -24,13 +24,13 @@ const changeGreeting = () => {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@use '../src/styles/mixins' as *;
+
 .main-content {
-    background: rgb(206, 167, 28);
-    border: 2px solid #a2820f;
+    @include block-style(rgb(206, 167, 28), #a2820f, 1rem, 0.5rem 0rem);
     justify-content: space-between;
     flex-direction: column;
-    margin: 0.5rem 0rem;
     flex: 2;
     display: flex;
     padding: 1rem;
@@ -52,19 +52,11 @@ const changeGreeting = () => {
 }
 
 button {
-    background-color: #dae3eb;
-    padding: 0.5rem 1rem;
-    border: 1px solid #225b10;
+    @include button-style(#dae3eb, #e1f1dc, #000, 0.5rem 1rem);
     width: fit-content;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #e1f1dc;
 }
 
 h1 {
-    font-family: var(--font-prim);
-    font-size: 60px;
+    @include heading-style(60px);
 }
 </style>
