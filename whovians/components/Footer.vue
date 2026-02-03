@@ -5,7 +5,6 @@ const email = 'info@gmail.com'
 
 <template>
   <footer class="footer">
-    <!-- Основной контент -->
     <div class="footer-grid">
       <div class="logo">
         <img src="/images/logo_white.svg" alt="zagdom" class="logo-icon" />
@@ -35,7 +34,6 @@ const email = 'info@gmail.com'
       <button class="cta-button">Оставить заявку</button>
     </div>
 
-    <!-- Нижний ряд — без линии -->
     <div class="footer-bottom">
       <p class="copyright">© Загдом, 2021</p>
       <p class="policy">Политика конфиденциальности</p>
@@ -136,8 +134,10 @@ a { text-decoration: none; color: inherit; }
     text-align: left;
   }
 
-  .footer-bottom {
-    margin-top: 24px;
-  }
+footer {
+    @include block-style(#126673, #052024, 1rem, 0.5rem 1rem);
+    min-height: max-content;
+    font-family: var(--font-prim);
+    color: #FFFFFF;
 }
 </style>
