@@ -1,5 +1,5 @@
-node_modules
+.output
 .nuxt
+node_modules
 .venv
 .vscode/
-.output/
