@@ -55,8 +55,8 @@ const projects = [
 
 .projects-title {
     width: 90%;
-    margin: 0 auto 24px;
-    text-align: center;
+    margin: 0 auto;
+    text-align: left;
 }
 
 .projects-list {
@@ -71,19 +71,7 @@ const projects = [
 
 @include m.media-breakpoint(md) {
     .projects-list, .projects-title {
-        width: 80%;
+        width: 85%;
     }
 }
-
-// @include m.media-breakpoint(lg) {
-//     .projects-list {
-//         display: grid;
-//         grid-template-columns: repeat(2, 1fr);
-//         overflow: visible;
-//         gap: 32px;
-//         width: 100%;
-//         min-width: unset;
-//         flex-shrink: 1;
-//     }
-// }
 </style>

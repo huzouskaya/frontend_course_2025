@@ -53,7 +53,7 @@ const calendarIcon = ref('/images/calendar.svg')
     margin-bottom: 50px;
 
     @include m.media-breakpoint(md) {
-        width: 80%;
+        width: 85%;
     }
 }
 
@@ -86,7 +86,7 @@ const calendarIcon = ref('/images/calendar.svg')
 }
 
 .stats-description {
-    @include m.text-style(var(--font-sec), 20px, 400, 1.35, #666666);
+    @include m.text-style(var(--font-sec), 20px, 400, 1.35, var(--description-text-color));
     margin: 0;
     opacity: 0.9;
 }
@@ -129,7 +129,7 @@ const calendarIcon = ref('/images/calendar.svg')
         }
 
         &:last-child {
-        @include m.text-style(var(--font-sec), 20px, 400, 1.35, #666666);
+        @include m.text-style(var(--font-sec), 20px, 400, 1.35, var(--description-text-color));
         }
     }
 }

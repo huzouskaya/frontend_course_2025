@@ -22,9 +22,11 @@ const logoSrc = computed(() => {
         </div>
 
         <div class="footer-bottom">
-            <p class="copyright">© Загдом, 2021</p>
-            <p class="policy">Политика конфиденциальности</p>
-            <p class="agreement">Пользовательское соглашение</p>
+            <div class="footer-items">
+                <p class="copyright">© Загдом, 2021</p>
+                <p class="policy">Политика конфиденциальности</p>
+                <p class="agreement">Пользовательское соглашение</p>            
+            </div>
         </div>
     </footer>
 </template>
@@ -36,21 +38,29 @@ const logoSrc = computed(() => {
 a { text-decoration: none; color: inherit; }
 
 .footer {
-    background: var(--dark-main-color);
+    background: #254741;
     color: white;
     padding: 40px 24px 32px;
     width: 100%;
 }
 
-.footer-grid,
 .footer-bottom {
+    width: 95%;
+    margin: 0 auto;
+    @include m.media-breakpoint(lg) {
+        width: 90%;
+    }
+}
+
+.footer-grid,
+.footer-items {
     max-width: 1264px;
     margin: 0 auto;
 }
 
-.footer-bottom {
+.footer-items {
     margin-top: 24px;
-    color: #ffffff;
+    color: rgba(255, 255, 255, 0.6);
     font-size: 14px;
     line-height: 1.2;
     font-family: var(--font-sec);
@@ -88,7 +98,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .nav-links :deep(a) {
-    @include m.text-style(var(--font-sec), 16px, 400, 1.2, rgba(255, 255, 255, 0.6));
+    @include m.text-style(var(--font-sec), 16px, 400, 1.2, #ffffff);
 }
 
 .footer-contacts :deep(.contact-item) {
@@ -114,7 +124,7 @@ a { text-decoration: none; color: inherit; }
 .nav-links { order: 2; }
 .footer-contacts { order: 3; }
 
-@include m.media-breakpoint(sm) {
+@include m.media-breakpoint(xs) {
     .footer-grid {
         display: grid;
         grid-template-columns: 1fr;
@@ -123,18 +133,12 @@ a { text-decoration: none; color: inherit; }
     }
 }
 
-@include m.media-breakpoint(md) {
+@include m.media-breakpoint(sm) {
     .footer-grid {
         grid-template-columns: 1fr 1fr;
     }
 
-    .footer-bottom {
-        margin-top: 40px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        gap: 20px;
-    }
+
 
     .logo { grid-column: 1; grid-row: 1; }
     .cta-button { grid-column: 2; grid-row: 1; }
@@ -142,6 +146,17 @@ a { text-decoration: none; color: inherit; }
     .footer-contacts { grid-column: 2; grid-row: 2; }
 }
 
+@include m.media-breakpoint(md) {
+    .footer-items {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        margin-left: 0;
+        width: 90%;
+        justify-content: space-between;
+    }
+}
 
 @include m.media-breakpoint(lg) {
     .footer-grid {
@@ -150,6 +165,10 @@ a { text-decoration: none; color: inherit; }
         justify-content: space-between;
         align-items: flex-start;
         gap: 80px;
+    }
+
+    .footer-items {
+        width: 66%;
     }
 
     .logo { order: 0; flex: 0 0 160px; }

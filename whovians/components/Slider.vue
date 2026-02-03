@@ -146,7 +146,7 @@ function goTo(index) {
 }
 
 .control-btn {
-    @include m.button-style(#029F59, white, 48px, 48px, 16px);
+    @include m.button-style(var(--main-color), white, 48px, 48px, 16px);
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -197,11 +197,11 @@ function goTo(index) {
     transition: all 0.3s ease;
     
     &:hover {
-        background: #029F59;
+        background: var(--main-color);
     }
     
     &.active {
-        background: #029F59;
+        background: var(--main-color);
         transform: scale(1.2);
     }
 }
@@ -212,7 +212,7 @@ function goTo(index) {
     }
 
     .slider {
-        width: 80%;
+        width: 85%;
     }
 }
 </style>
