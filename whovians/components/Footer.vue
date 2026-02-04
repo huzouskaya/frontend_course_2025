@@ -36,7 +36,11 @@ const isDialogOpen = ref(false)
             </div>
         </div>
 
-        <Dialog v-model:open="isDialogOpen" />
+        <Dialog
+            v-model:open="isDialogOpen"
+            title=""
+            description=""
+        />
     </footer>
 </template>
 

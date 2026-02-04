@@ -9,32 +9,42 @@ import {
     DialogDescription,
     DialogClose
 } from 'radix-vue'
+import Form from '../../components/Form.vue'
 
-defineProps({
-    open: Boolean
+const props = defineProps({
+    open: Boolean,
+    title: {
+        type: String,
+        default: 'Модальное окно'
+    },
+    description: {
+        type: String,
+        default: 'Описание'
+    }
 })
 
 const emit = defineEmits(['update:open'])
+
+function onFormSubmit(data) {
+    console.log('Форма отправлена:', data)
+    emit('update:open', false)
+}
 </script>
 
 <template>
     <DialogRoot :open="open" @update:open="emit('update:open', $event)">
         <DialogPortal>
-            <DialogOverlay class="overlay" />
-            <DialogContent class="content">
-                <div class="header">
-                <DialogTitle class="title">Оставить заявку</DialogTitle>
-                <DialogClose class="close-btn">x</DialogClose>
-                </div>
-                
-                <DialogDescription class="description">
-                    Оставьте свои контакты, и мы свяжемся с вами в ближайшее время.
-                </DialogDescription>
-                
-                <div class="placeholder">
-                    Здесь будет форма
-                </div>
-            </DialogContent>
+        <DialogOverlay class="overlay" />
+        <DialogContent class="content">
+            <div class="header">
+            <DialogTitle class="title">{{ title }}</DialogTitle>
+            <DialogClose class="close-btn">×</DialogClose>
+            </div>
+
+            <Form @submit="onFormSubmit" />
+            
+            <DialogDescription class="description">{{ description }}</DialogDescription>
+        </DialogContent>
         </DialogPortal>
     </DialogRoot>
 </template>
@@ -51,7 +61,7 @@ const emit = defineEmits(['update:open'])
 }
 
 .content {
-    background-color: white;
+    background-color: var(--bg-color-light);
     border-radius: 20px;
     box-shadow: 0 10px 38px -10px rgba(22, 23, 24, 0.35), 0 10px 20px -15px rgba(22, 23, 24, 0.2);
     position: fixed;
@@ -82,13 +92,14 @@ const emit = defineEmits(['update:open'])
 }
 
 .close-btn {
-    @include m.button-style(white, var(--main-color), 32px, 32px, 10px, var(--main-color));
+    @include m.button-style(rgba(2, 159, 89, 0.2), var(--main-color), 32px, 32px, 6px);
     padding: 0;
-
-    &:hover {
-        background-color: var(--main-color);
-        color: white;
-    }
+    font-size: 28px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
 .description {
