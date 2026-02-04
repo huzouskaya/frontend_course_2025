@@ -88,7 +88,7 @@ const breadcrumbs = [
     max-width: 1264px;
     margin: 0 auto 2rem;
     font-family: var(--font-prim);
-    font-size: 46px;
+    font-size: 32px;
     font-weight: 700;
     color: var(--text-color-prim);
 }
@@ -111,6 +111,9 @@ const breadcrumbs = [
 @include m.media-breakpoint(md) {
     .news-list {
         grid-template-columns: repeat(3, 1fr);
+    }
+    .page-title {
+        font-size: 46px;
     }
 }
 
