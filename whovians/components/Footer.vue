@@ -137,8 +137,6 @@ a { text-decoration: none; color: inherit; }
         grid-template-columns: 1fr 1fr;
     }
 
-
-
     .logo { grid-column: 1; grid-row: 1; }
     .cta-button { grid-column: 2; grid-row: 1; }
     .nav-links { grid-column: 1; grid-row: 2; }

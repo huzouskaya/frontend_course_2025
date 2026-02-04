@@ -81,6 +81,7 @@ function goTo(index) {
 @use '../assets/scss/mixins' as m;
 
 .slider {
+    width: 90%;
     padding: 0 16px;
     width: 90%;
     margin: 0 auto;
