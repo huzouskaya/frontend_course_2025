@@ -23,7 +23,7 @@ const isDialogOpen = ref(false)
             </div>
             <NavLinks class="nav-links" />
             <ContactItems class="footer-contacts" />
-            <Button class="cta-button" @click="isDialogOpen = true">Оставить заявку</Button>
+            <button class="cta-button" @click="isDialogOpen = true">Оставить заявку</button>
         </div>
 
         <div class="footer-bottom">
@@ -73,7 +73,7 @@ a { text-decoration: none; color: inherit; }
     text-align: left;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 20px;
 }
 
 .footer-grid {

@@ -16,9 +16,9 @@
       <div class="nav-right">
         <div class="desktop-only">
           <ul class="nav-menu">
-            <li><a href="#">Реализованные проекты</a></li>
-            <li><a href="#">Новости</a></li>
-            <li><a href="#">Контакты</a></li>
+            <li><NuxtLink to="/">Реализованные проекты</NuxtLink></li>
+            <li><NuxtLink to="/news">Новости</NuxtLink></li>
+            <li><NuxtLink to="/contacts">Контакты</NuxtLink></li>
           </ul>
         </div>
         <div class="header-contacts">
@@ -26,7 +26,8 @@
             <img src="/images/phone.svg" alt="phone" width="16" height="16" loading="lazy" />
             +7 (900) 900-90-90
           </div>
-          <button class="cta-button">Оставить заявку</button>
+          <button class="cta-button" @click="isDialogOpen = true">Оставить заявку</button>
+          <Dialog v-model:open="isDialogOpen" />
         </div>
 
         <label for="drawer-toggle" class="menu-toggle">
@@ -53,6 +54,7 @@
 
 <script setup>
 import { ref, watch, onUnmounted } from 'vue'
+import Dialog from './Dialog.vue'
 import NavLinks from './NavLinks.vue'
 import ContactItems from './ContactItems.vue'
 
@@ -65,6 +67,8 @@ watch(drawerOpen, (newVal) => {
 onUnmounted(() => {
   document.body.classList.remove('no-scroll')
 })
+
+const isDialogOpen = ref(false)
 </script>
 
 <style scoped lang="scss">
@@ -209,6 +213,7 @@ onUnmounted(() => {
   }
 
   .desktop-only {
+    margin-right: 50px;
     display: flex;
     align-items: center;
     gap: 16px;
@@ -294,6 +299,15 @@ onUnmounted(() => {
   .nav-menu a {
     @include m.text-style(var(--font-sec), 16px, 400, 1.2, var(--description-text-color));
     text-decoration: none;
+
+    &:hover {
+      color: var(--main-color);
+    }
+
+    &.router-link-active {
+      color: var(--main-color);
+      font-weight: 600;
+    }
   }
 
   .header-contacts {
