@@ -4,6 +4,8 @@
     <main class="main-content">
       <Slider />
       <Stats />
+      <Projects />
+      <News />
     </main>
     <Footer />
   </div>
@@ -14,6 +16,8 @@ import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
 import Slider from '../components/Slider.vue'
 import Stats from '../components/Stats.vue'
+import Projects from '../components/Projects.vue'
+import News from '../components/News.vue'
 </script>
 
 <style>
@@ -21,8 +25,13 @@ import Stats from '../components/Stats.vue'
   --font-prim: 'Montserrat', sans-serif;
   --font-sec: 'Open Sans', sans-serif;
 
+  --text-color-prim: #000000;
+  --text-color-sec: #666666; 
+
+  --bg-color-light: #f5f7f3;
+
   --main-color: #029F59;
-  --description-text-color: #666666;
+  --dark-main-color: #254741;
 }
 
 * {
@@ -41,6 +50,7 @@ body {
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
 }
 
 .page-wrapper {

@@ -22,9 +22,11 @@ const logoSrc = computed(() => {
         </div>
 
         <div class="footer-bottom">
-            <p class="copyright">© Загдом, 2021</p>
-            <p class="policy">Политика конфиденциальности</p>
-            <p class="agreement">Пользовательское соглашение</p>
+            <div class="footer-items">
+                <p class="copyright">© Загдом, 2021</p>
+                <p class="policy">Политика конфиденциальности</p>
+                <p class="agreement">Пользовательское соглашение</p>            
+            </div>
         </div>
     </footer>
 </template>
@@ -42,13 +44,20 @@ a { text-decoration: none; color: inherit; }
     width: 100%;
 }
 
-.footer-grid,
 .footer-bottom {
+    margin: 0 auto;
+    @include m.media-breakpoint(lg) {
+        width: 90%;
+    }
+}
+
+.footer-grid,
+.footer-items {
     max-width: 1264px;
     margin: 0 auto;
 }
 
-.footer-bottom {
+.footer-items {
     margin-top: 24px;
     color: rgba(255, 255, 255, 0.6);
     font-size: 14px;
@@ -128,20 +137,22 @@ a { text-decoration: none; color: inherit; }
         grid-template-columns: 1fr 1fr;
     }
 
-    .footer-bottom {
+    .logo { grid-column: 1; grid-row: 1; }
+    .cta-button { grid-column: 2; grid-row: 1; }
+    .nav-links { grid-column: 1; grid-row: 2; }
+    .footer-contacts { grid-column: 2; grid-row: 2; }
+}
+
+@include m.media-breakpoint(md) {
+    .footer-items {
         margin-top: 40px;
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
         margin-left: 0;
-        width: 100%;
+        width: 90%;
         justify-content: space-between;
     }
-
-    .logo { grid-column: 1; grid-row: 1; }
-    .cta-button { grid-column: 2; grid-row: 1; }
-    .nav-links { grid-column: 1; grid-row: 2; }
-    .footer-contacts { grid-column: 2; grid-row: 2; }
 }
 
 @include m.media-breakpoint(lg) {
@@ -153,8 +164,8 @@ a { text-decoration: none; color: inherit; }
         gap: 80px;
     }
 
-    .footer-bottom {
-        width: 65%;
+    .footer-items {
+        width: 66%;
     }
 
     .logo { order: 0; flex: 0 0 160px; }

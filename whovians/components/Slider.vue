@@ -83,7 +83,7 @@ function goTo(index) {
 .slider {
     width: 90%;
     padding: 0 16px;
-    max-width: 1264px;
+    width: 90%;
     margin: 0 auto;
     margin-top: 0;
     padding-top: 0;
@@ -98,10 +98,8 @@ function goTo(index) {
 .slide {
     position: relative;
     width: 100%;
-    height: 600px;
     background: #254741;
     overflow: hidden;
-    
     @include m.media-breakpoint(md) {
         height: 700px;
     }
@@ -177,15 +175,6 @@ function goTo(index) {
     }
 }
 
-@include m.media-breakpoint(md) {
-    .control-btn {
-        display: flex;
-    }
-    .slider {
-        width: 80%;
-    }
-}
-
 .pagination {
     position: absolute;
     bottom: 20px;
@@ -215,6 +204,16 @@ function goTo(index) {
     &.active {
         background: var(--main-color);
         transform: scale(1.2);
+    }
+}
+
+@include m.media-breakpoint(md) {
+    .control-btn {
+        display: flex;
+    }
+
+    .slider {
+        width: 85%;
     }
 }
 </style>
