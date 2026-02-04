@@ -2,9 +2,8 @@
   <div class="page-wrapper">
     <Header />
     <main class="main-content">
-      <div class="container">
-        <h1>Whovians place</h1>
-      </div>
+      <Slider />
+      <Stats />
     </main>
     <Footer />
   </div>
@@ -13,6 +12,8 @@
 <script setup>
 import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
+import Slider from '../components/Slider.vue'
+import Stats from '../components/Stats.vue'
 </script>
 
 <style>
@@ -37,7 +38,7 @@ html, body {
 body {
   font-family: var(--font-sec);
   line-height: 1.6;
-  background-color: #f4f4f4;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
 }

@@ -324,6 +324,7 @@ onUnmounted(() => {
   .nav-menu li {
     display: flex;
     height: 100%;
+    margin: 0;
   }
 
   .nav-menu a {

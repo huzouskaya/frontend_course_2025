@@ -1,6 +1,6 @@
 @use "sass:map";
 
-@mixin text-style($font-family, $font-size, $font-weight, $line-height: null, $color: null) {
+@mixin text-style($font-family, $font-size, $font-weight, $line-height: null, $color: #000000) {
     font-family: $font-family;
     font-size: $font-size;
     font-weight: $font-weight;
@@ -59,7 +59,7 @@ $grid-breakpoints: (
     sm: 576px,
     md: 768px,
     lg: 987px,
-    xl: 1200px
+    xl: 1100px
 );
 
 @mixin media-breakpoint($name) {
