@@ -26,7 +26,7 @@
         <div class="header-contacts">
           <div class="phone">
             <img src="/images/phone.svg" alt="phone" width="16" height="16" loading="lazy" />
-            +7 (900) 900-90-90
+            <a :href='`tel:${phone.value}`'>{{ phone.label }}</a>
           </div>
           <button class="cta-button" @click="isDialogOpen = true">Оставить заявку</button>
           <Dialog v-model:open="isDialogOpen" />
@@ -59,9 +59,11 @@ import { ref, watch, onUnmounted } from 'vue'
 import Dialog from './Dialog.vue'
 import NavLinks from './NavLinks.vue'
 import ContactItems from './ContactItems.vue'
+import { mockContacts } from '../mock/contacts.js'
+
+const { phone } = mockContacts
 
 const drawerOpen = ref(false)
-
 watch(drawerOpen, (newVal) => {
   document.body.classList.toggle('no-scroll', newVal)
 })
@@ -77,6 +79,10 @@ const isDialogOpen = ref(false)
 @use '../assets/scss/mixins' as m;
 
 * { box-sizing: border-box; }
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
 .header {
   width: 100%;
@@ -235,7 +241,7 @@ const isDialogOpen = ref(false)
   .phone {
     display: flex;
     align-items: center;
-    @include m.text-style(var(--font-prim), 14px, 400, 1.2, #254741);
+    @include m.text-style(var(--font-prim), 14px, 400, 1.2, var(--description-text-color));
     gap: 6px;
   }
 }

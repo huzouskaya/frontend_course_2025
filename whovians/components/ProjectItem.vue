@@ -18,15 +18,15 @@ defineProps({
 
 <template>
     <div class="project-card">
-        <div class="project-text">
-            <h4 v-html="title"></h4>
-            <div v-html="description" class="project-desc"></div>
-        </div>
         <div class="project-img-wrapper">
             <picture>
                 <source :srcset="image.x2" media="(min-width: 768px)" />
                 <img :src="image.x1" :alt="title" loading="lazy" />
             </picture>
+        </div>
+        <div class="project-text">
+            <h4 v-html="title"></h4>
+            <div v-html="description" class="project-desc"></div>
         </div>
     </div>
 </template>
@@ -90,6 +90,17 @@ defineProps({
 @include m.media-breakpoint(md) {
     .project-card {
         flex-direction: row;
+    }
+
+    .project-text {
+        order: -1;
+        width: 50%;
+        padding: 24px;
+    }
+
+    .project-img-wrapper {
+        width: 50%;
+        height: auto;
     }
 
     .project-text,

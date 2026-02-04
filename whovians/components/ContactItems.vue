@@ -2,7 +2,7 @@
     <div class="contact-items" :class="variant">
         <div class="contact-item">
             <img src="/images/phone.svg" alt="Телефон" class="icon" />
-            <a :href="`tel:${phone}`">{{ phone }}</a>
+            <a :href="`tel:${phone.value}`">{{ phone.label }}</a>
         </div>
         <div class="contact-item">
             <img src="/images/email.svg" alt="Email" class="icon" />

@@ -1,4 +1,5 @@
 <script setup>
+import Breadcrumbs from '../../components/Breadcrumbs.vue'
 import NewsItem from '../components/NewsItem.vue'
 import { newsData } from '../../data/news.js'
 
@@ -10,12 +11,7 @@ const breadcrumbs = [
 
 <template>
     <main class="news-page">
-        <div class="breadcrumbs">
-            <NuxtLink v-for="(crumb, i) in breadcrumbs" :key="i" :to="crumb.to" class="breadcrumb-link">
-                {{ crumb.text }}
-                <span v-if="i < breadcrumbs.length - 1" class="separator">/</span>
-            </NuxtLink>
-        </div>
+        <Breadcrumbs :items="breadcrumbs" />
         <h1 class="page-title">Новости</h1>
         <div class="news-list">
         <NewsItem
@@ -54,33 +50,6 @@ const breadcrumbs = [
 
 .news-page {
     padding: 2rem 0;
-}
-
-.breadcrumbs {
-    width: 90%;
-    max-width: 1264px;
-    margin: 0 auto 2rem;
-    display: flex;
-    font-family: var(--font-sec);
-    font-size: 20px;
-    color: var(--text-color-sec);
-
-    .breadcrumb-link {
-        text-decoration: none;
-        color: inherit;
-        display: flex;
-        align-items: center;
-        transition: color 0.2s;
-
-        &:hover {
-        color: var(--main-color);
-        }
-
-        .separator {
-        margin: 0 4px;
-        color: var(--text-color-sec);
-        }
-    }
 }
 
 .page-title {

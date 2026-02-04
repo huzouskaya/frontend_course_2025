@@ -1,5 +1,6 @@
 <script setup>
 import ContactItems from '../../components/ContactItems.vue'
+import Breadcrumbs from '../../components/Breadcrumbs.vue'
 import YandexMap from '../../components/YandexMap.vue'
 
 const breadcrumbs = [
@@ -10,12 +11,7 @@ const breadcrumbs = [
 
 <template>
     <main class="main-content">
-        <div class="breadcrumbs">
-            <NuxtLink v-for="(crumb, i) in breadcrumbs" :key="i" :to="crumb.to" class="breadcrumb-link">
-                {{ crumb.text }}
-                <span v-if="i < breadcrumbs.length - 1" class="separator">/</span>
-            </NuxtLink>
-        </div>
+        <Breadcrumbs :items="breadcrumbs" />
         
         <div class="contacts-and-map">
             <div class="contacts-section">
@@ -36,33 +32,6 @@ const breadcrumbs = [
 @use '../../assets/scss/mixins' as m;
 .main-content {
     padding: 2rem 0;
-}
-
-.breadcrumbs {
-    width: 90%;
-    max-width: 1264px;
-    margin: 0 auto 2rem;
-    display: flex;
-    font-family: var(--font-sec);
-    font-size: 20px;
-    color: var(--text-color-sec);
-
-    .breadcrumb-link {
-        text-decoration: none;
-        color: inherit;
-        display: flex;
-        align-items: center;
-        transition: color 0.2s;
-
-        &:hover {
-        color: var(--main-color);
-        }
-
-        .separator {
-        margin: 0 4px;
-        color: var(--text-color-sec);
-        }
-    }
 }
 
 .page-title {
