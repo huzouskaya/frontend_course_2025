@@ -10,7 +10,9 @@
 
     <nav class="nav">
       <div class="logo">
-        <img src="/images/logo.svg" alt="zagdom" width="160" height="39" loading="lazy" />
+        <NuxtLink to="/">
+          <img src="/images/logo.svg" alt="zagdom" width="160" height="39" loading="lazy" />
+        </NuxtLink>
       </div>
 
       <div class="nav-right">

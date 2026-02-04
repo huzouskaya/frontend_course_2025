@@ -19,12 +19,7 @@
 </template>
 
 <script setup>
-const phone = '+7 (900) 900-90-90'
-const email = 'info@gmail.com'
-const address = {
-    city: 'г. Владивосток',
-    street: 'ул. Выселковая 49, стр. 3'
-}
+import { mockContacts } from '../mock/contacts.js'
 
 const props = defineProps({
     variant: {
@@ -32,6 +27,8 @@ const props = defineProps({
         default: 'default'
     }
 })
+
+const { phone, email, address } = mockContacts
 </script>
 
 <style scoped>

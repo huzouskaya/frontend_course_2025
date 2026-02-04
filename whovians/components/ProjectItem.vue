@@ -39,7 +39,7 @@ defineProps({
     background: white;
     border-radius: 12px;
     overflow: hidden;
-    flex-direction: row;
+    flex-direction: column;
     min-width: 300px;
     flex-shrink: 0;
 }
@@ -81,7 +81,17 @@ defineProps({
     }
 }
 
+// @include m.media-breakpoint(sm) {
+//     .project-card {
+//         flex-direction: row;
+//     }
+// }
+
 @include m.media-breakpoint(md) {
+    .project-card {
+        flex-direction: row;
+    }
+
     .project-text,
     .project-img-wrapper {
         width: 100%;

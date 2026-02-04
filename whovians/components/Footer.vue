@@ -19,7 +19,9 @@ const isDialogOpen = ref(false)
     <footer class="footer">
         <div class="footer-grid">
             <div class="logo">
-                <img :src="logoSrc" alt="загдом" class="logo-icon" />
+                <NuxtLink to="/">
+                    <img :src="logoSrc" alt="загдом" class="logo-icon" />
+                </NuxtLink>
             </div>
             <NavLinks class="nav-links" />
             <ContactItems class="footer-contacts" />
