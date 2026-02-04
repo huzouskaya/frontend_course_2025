@@ -1,45 +1,32 @@
 <script setup>
-const phone = '+7 (900) 900-90-90'
-const email = 'info@gmail.com'
+import NavLinks from './NavLinks.vue'
+import ContactItems from './ContactItems.vue'
+import { computed } from 'vue'
+import logoSvg from '../public/images/logo.svg?raw'
+
+const logoSrc = computed(() => {
+    const whiteSvg = logoSvg.replace(/#254741/g, '#FFFFFF')
+    return `data:image/svg+xml;base64,${btoa(whiteSvg)}`
+})
 </script>
 
 <template>
-  <footer class="footer">
-    <div class="footer-grid">
-      <div class="logo">
-        <img src="/images/logo_white.svg" alt="zagdom" class="logo-icon" />
-      </div>
-
-      <ul class="nav-links">
-        <li><a href="#">Реализованные проекты</a></li>
-        <li><a href="#">Новости</a></li>
-        <li><a href="#">Контакты</a></li>
-      </ul>
-
-      <div class="footer-contacts">
-        <div class="contact-item">
-          <img src="/images/phone.svg" alt="Телефон" class="icon" />
-          <a :href="`tel:${phone}`">{{ phone }}</a>
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="logo">
+                <img :src="logoSrc" alt="загдом" class="logo-icon" />
+            </div>
+            <NavLinks class="nav-links" />
+            <ContactItems class="footer-contacts" />
+            <button class="cta-button">Оставить заявку</button>
         </div>
-        <div class="contact-item">
-          <img src="/images/email.svg" alt="Email" class="icon" />
-          <a :href="`mailto:${email}`">{{ email }}</a>
-        </div>
-        <div class="contact-item">
-          <img src="/images/place.svg" alt="Адрес" class="icon" />
-          <span>г. Владивосток<br />ул. Выселковая 49, стр. 3</span>
-        </div>
-      </div>
 
-      <button class="cta-button">Оставить заявку</button>
-    </div>
-
-    <div class="footer-bottom">
-      <p class="copyright">© Загдом, 2021</p>
-      <p class="policy">Политика конфиденциальности</p>
-      <p class="agreement">Пользовательское соглашение</p>
-    </div>
-  </footer>
+        <div class="footer-bottom">
+            <p class="copyright">© Загдом, 2021</p>
+            <p class="policy">Политика конфиденциальности</p>
+            <p class="agreement">Пользовательское соглашение</p>
+        </div>
+    </footer>
 </template>
 
 <style scoped lang="scss">
@@ -49,95 +36,136 @@ const email = 'info@gmail.com'
 a { text-decoration: none; color: inherit; }
 
 .footer {
-  background: #254741;
-  color: white;
-  padding: 40px 88px 32px;
-  width: 100%;
+    background: #254741;
+    color: white;
+    padding: 40px 24px 32px;
+    width: 100%;
 }
 
 .footer-grid,
 .footer-bottom {
-  display: grid;
-  grid-template-columns: 160px 1fr 1fr 204px;
-  gap: 80px;
-  max-width: 1264px;
-  margin: 0 auto;
-}
-
-.footer-grid {
-  align-items: flex-start;
-}
-
-.nav-links {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.nav-links a {
-  @include m.text-style(var(--font-sec), 16px, 400, 1.2, rgba(255, 255, 255, 0.6));
-}
-
-.footer-contacts {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.contact-item {
-  @include m.flex-center;
-  gap: 8px;
-  @include m.text-style(var(--font-prim), 14px, 400, 1.2, #ffffff);
-}
-
-.icon {
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;
-}
-
-.logo .logo-icon {
-  width: 160px;
-  height: 39px;
-}
-
-.cta-button {
-  @include m.button-style(#029f59, #ffffff, 204px, 49px);
-  border-radius: 10px;
-  padding: 16px 40px;
-  justify-self: start;
+    max-width: 1264px;
+    margin: 0 auto;
 }
 
 .footer-bottom {
-  margin-top: 40px;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 14px;
-  line-height: 1.2;
-  font-family: var(--font-sec);
+    margin-top: 24px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    line-height: 1.2;
+    font-family: var(--font-sec);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: flex-start;
+}
+
+.cta-button {
+    @include m.button-style(var(--main-color), #ffffff, 204px, 49px);
+    padding: 16px 40px;
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.footer-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.nav-links :deep(a) {
+    @include m.text-style(var(--font-sec), 16px, 400, 1.2, #ffffff);
+}
+
+.footer-contacts :deep(.contact-item) {
+    @include m.flex-center;
+    gap: 8px;
+    @include m.text-style(var(--font-prim), 14px, 400, 1.2, #ffffff);
+}
+
+.footer-contacts :deep(.icon) {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.logo-icon {
+    width: 160px;
+    height: 39px;
+    display: block;
+}
+
+.logo { order: 1; }
+.cta-button { order: 4; }
+.nav-links { order: 2; }
+.footer-contacts { order: 3; }
+
+@include m.media-breakpoint(xs) {
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 32px 40px;
+        align-items: start;
+    }
+}
+
+@include m.media-breakpoint(sm) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-bottom {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        margin-left: 0;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .logo { grid-column: 1; grid-row: 1; }
+    .cta-button { grid-column: 2; grid-row: 1; }
+    .nav-links { grid-column: 1; grid-row: 2; }
+    .footer-contacts { grid-column: 2; grid-row: 2; }
+}
+
+@include m.media-breakpoint(lg) {
+    .footer-grid {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 80px;
+    }
+
+    .footer-bottom {
+        width: 65%;
+    }
+
+    .logo { order: 0; flex: 0 0 160px; }
+    .nav-links { order: 0; flex: 1; }
+    .footer-contacts { order: 0; flex: 1; }
+    .cta-button { order: 0; flex: 0 0 204px; }
 }
 
 .copyright,
 .policy,
 .agreement {
-  margin: 0;
-}
-
-/* Адаптивность */
-@media (max-width: 1024px) {
-  .footer-grid,
-  .footer-bottom {
-    grid-template-columns: 1fr;
-    gap: 32px;
-    text-align: left;
-  }
-
-footer {
-    @include block-style(#126673, #052024, 1rem, 0.5rem 1rem);
-    min-height: max-content;
-    font-family: var(--font-prim);
-    color: #FFFFFF;
+    margin: 0;
 }
 </style>
