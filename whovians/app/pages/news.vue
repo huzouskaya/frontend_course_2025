@@ -1,7 +1,24 @@
 <script setup>
+import { ref, computed } from 'vue'
+import NewsItem from '../../components/NewsItem.vue'
+import Pagination from '../../components/Pagination.vue'
 import Breadcrumbs from '../../components/Breadcrumbs.vue'
-import NewsItem from '../components/NewsItem.vue'
 import { newsData } from '../../data/news.js'
+
+const itemsPerPage = 12
+const currentPage = ref(1)
+
+const paginatedNews = computed(() => {
+    const start = (currentPage.value - 1) * itemsPerPage
+    return newsData.slice(start, start + itemsPerPage)
+})
+
+const onPageChange = (page) => {
+    currentPage.value = page
+    if (process.client) {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+}
 
 const breadcrumbs = [
     { text: 'Главная', to: '/' },
@@ -11,37 +28,30 @@ const breadcrumbs = [
 
 <template>
     <main class="news-page">
-        <Breadcrumbs :items="breadcrumbs" />
+        <div class="breadcrumbs">
+        <NuxtLink v-for="(crumb, i) in breadcrumbs" :key="i" :to="crumb.to" class="breadcrumb-link">
+            {{ crumb.text }}
+            <span v-if="i < breadcrumbs.length - 1" class="separator">/</span>
+        </NuxtLink>
+        </div>
         <h1 class="page-title">Новости</h1>
         <div class="news-list">
         <NewsItem
-            v-for="item in newsData"
-            :key="item.id"
+            v-for="(item, index) in paginatedNews"
+            :key="index"
             :title="item.title"
             :description="item.description"
             :date="item.date"
             :image="item.image"
         />
         </div>
-        <div class="pagination">
-            <div class="pagination-mobile">
-                <a href="#" class="page prev">←</a>
-                <span class="page active">1</span>
-                <span class="page ellipsis">...</span>
-                <a href="#" class="page">10</a>
-                <a href="#" class="page next">→</a>
-            </div>
 
-            <div class="pagination-desktop">
-                <a href="#" class="page prev"><</a>
-                <span class="page active">1</span>
-                <a href="#" class="page">2</a>
-                <span class="page ellipsis">...</span>
-                <a href="#" class="page">8</a>
-                <a href="#" class="page">10</a>
-                <a href="#" class="page next">></a>
-            </div>
-        </div>
+        <Pagination
+        :total="newsData.length"
+        :items-per-page="itemsPerPage"
+        :current-page="currentPage"
+        @update:page="onPageChange"
+        />
     </main>
 </template>
 
@@ -52,14 +62,37 @@ const breadcrumbs = [
     padding: 2rem 0;
 }
 
+.breadcrumbs {
+    width: 90%;
+    max-width: 1264px;
+    margin: 0 auto 2rem;
+    display: flex;
+
+    @include m.text-style(var(--font-sec), 20px, 400, 1.35, var(--text-color-sec));
+
+    .breadcrumb-link {
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        align-items: center;
+        transition: color 0.2s;
+
+        &:hover {
+        color: var(--main-color);
+        }
+
+        .separator {
+        margin: 0 4px;
+        color: var(--text-color-sec);
+        }
+    }
+}
+
 .page-title {
     width: 90%;
     max-width: 1264px;
     margin: 0 auto 2rem;
-    font-family: var(--font-prim);
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--text-color-prim);
+    @include m.text-style(var(--font-prim), 32px, 700, 1.2, var(--text-color-prim));
 }
 
 .news-list {
@@ -89,46 +122,6 @@ const breadcrumbs = [
 @include m.media-breakpoint(lg) {
     .news-list {
         grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-.pagination {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 40px;
-    font-family: var(--font-sec);
-
-    .pagination-desktop { display: none; }
-    .pagination-mobile { display: flex; gap: 8px; }
-
-    @include m.media-breakpoint(md) {
-        .pagination-desktop { display: flex; gap: 8px; }
-        .pagination-mobile { display: none; }
-    }
-
-    .page {
-        @include m.pagination-button(white, var(--text-color-prim), true);
-
-        &.prev,
-        &.next {
-            @include m.pagination-button(var(--main-color), white, false);
-        }
-
-        &.active {
-            @include m.pagination-button(var(--dark-main-color), white, false);
-        }
-
-        &.ellipsis {
-            @include m.pagination-button(transparent, var(--text-color-sec), false);
-            cursor: default;
-        }
-
-        &:not(.active):not(.prev):not(.next):not(.ellipsis):hover {
-            background: #f9f9f9;
-            border-color: var(--main-color);
-            color: var(--main-color);
-        }
     }
 }
 </style>
