@@ -72,6 +72,7 @@ const projects = [
 @include m.media-breakpoint(md) {
     .projects-list, .projects-title {
         width: 85%;
+        max-width: 1264px;
     }
 }
 </style>

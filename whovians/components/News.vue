@@ -64,7 +64,7 @@ const news = [
 @use '../assets/scss/mixins' as m;
 .news {
     width: 100%;
-    padding: 2rem 0;
+    padding: 2rem 0 0;
 }
 
 .news-button {
@@ -77,6 +77,7 @@ const news = [
     width: 90%;
     display: grid;
     grid-template-columns: 1fr;
+    grid-template-rows: 300px;
     gap: 32px;
     overflow: auto;
     margin: 0 auto; 
@@ -96,21 +97,25 @@ const news = [
 @include m.media-breakpoint(sm) {
     .news-list {
         grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: minmax(200px, auto) 0px;
     }
 }
 
 @include m.media-breakpoint(md) {
     .news-list, .news-set {
         width: 85%;
+        max-width: 1264px;
     }
     .news-list {
         grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: minmax(200px, auto) 0px 0px;
     }
 }
 
 @include m.media-breakpoint(lg) {
     .news-list {
         grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: minmax(200px, auto) 0px 0px 0px;
     }
 }
 </style>

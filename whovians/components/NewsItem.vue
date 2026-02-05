@@ -50,7 +50,6 @@ defineProps({
     object-fit: cover;
   }
 
-  // Мобильные стили (по умолчанию)
   .news-item__meta {
     padding: 0 12px;
     margin-top: 12px;
@@ -76,7 +75,6 @@ defineProps({
     color: var(--text-color-sec);
   }
 
-  // Десктоп (md+)
   @include m.media-breakpoint(md) {
     .news-item__meta {
       padding: 0 16px;
@@ -86,11 +84,6 @@ defineProps({
     .news-item__date {
       font-size: 13px;
       margin-bottom: 6px;
-    }
-
-    h4 {
-      font-size: 18px;
-      margin: 0 0 12px;
     }
 
     .news-item__desc {

@@ -91,10 +91,7 @@ const breadcrumbs = [
     width: 90%;
     max-width: 1264px;
     margin: 0 auto 2rem;
-    font-family: var(--font-prim);
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--text-color-prim);
+    @include m.text-style(var(--font-prim), 32px, 700, 1.2, var(--text-color-prim));
 }
 
 .news-list {
