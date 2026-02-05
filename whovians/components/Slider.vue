@@ -55,7 +55,7 @@
 import { ref, computed } from 'vue'
 import { Carousel, Slide } from 'vue3-carousel'
 import 'vue3-carousel/dist/carousel.css'
-import { slides } from '../data/slides.js'
+import { slides } from '../../data/slides.js'
 
 const carouselRef = ref()
 const currentSlide = ref(0)

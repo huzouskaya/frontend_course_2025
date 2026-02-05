@@ -1,24 +1,31 @@
 <script setup>
 import NavLinks from './NavLinks.vue'
 import ContactItems from './ContactItems.vue'
-import { computed } from 'vue'
 import logoSvg from '../public/images/logo.svg?raw'
+import { computed } from 'vue'
 
 const logoSrc = computed(() => {
     const whiteSvg = logoSvg.replace(/#254741/g, '#FFFFFF')
     return `data:image/svg+xml;base64,${btoa(whiteSvg)}`
 })
+
+import { ref } from 'vue'
+import Dialog from './Dialog.vue'
+
+const isDialogOpen = ref(false)
 </script>
 
 <template>
     <footer class="footer">
         <div class="footer-grid">
             <div class="logo">
-                <img :src="logoSrc" alt="загдом" class="logo-icon" />
+                <NuxtLink to="/">
+                    <img :src="logoSrc" alt="загдом" class="logo-icon" />
+                </NuxtLink>
             </div>
             <NavLinks class="nav-links" />
             <ContactItems class="footer-contacts" />
-            <button class="cta-button">Оставить заявку</button>
+            <button class="cta-button" @click="isDialogOpen = true">Оставить заявку</button>
         </div>
 
         <div class="footer-bottom">
@@ -28,6 +35,8 @@ const logoSrc = computed(() => {
                 <p class="agreement">Пользовательское соглашение</p>            
             </div>
         </div>
+
+        <Dialog v-model:open="isDialogOpen" />
     </footer>
 </template>
 
@@ -47,7 +56,7 @@ a { text-decoration: none; color: inherit; }
 .footer-bottom {
     margin: 0 auto;
     @include m.media-breakpoint(lg) {
-        width: 90%;
+        width: 95%;
     }
 }
 
@@ -66,15 +75,24 @@ a { text-decoration: none; color: inherit; }
     text-align: left;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 20px;
 }
 
 .footer-grid {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: 32px;
-    align-items: flex-start;
+    align-items: start;
+    grid-template-areas:
+        "logo"
+        "nav"
+        "contacts"
+        "cta";
 }
+
+.logo { grid-area: logo; }
+.nav-links { grid-area: nav; }
+.footer-contacts { grid-area: contacts; }
+.cta-button { grid-area: cta; }
 
 .cta-button {
     @include m.button-style(var(--main-color), #ffffff, 204px, 49px);
@@ -118,37 +136,19 @@ a { text-decoration: none; color: inherit; }
     display: block;
 }
 
-.logo { order: 1; }
-.cta-button { order: 4; }
-.nav-links { order: 2; }
-.footer-contacts { order: 3; }
-
-@include m.media-breakpoint(xs) {
-    .footer-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 32px 40px;
-        align-items: start;
-    }
-}
-
 @include m.media-breakpoint(sm) {
     .footer-grid {
         grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+        "logo cta"
+        "nav contacts";
     }
-
-    .logo { grid-column: 1; grid-row: 1; }
-    .cta-button { grid-column: 2; grid-row: 1; }
-    .nav-links { grid-column: 1; grid-row: 2; }
-    .footer-contacts { grid-column: 2; grid-row: 2; }
 }
 
 @include m.media-breakpoint(md) {
     .footer-items {
         margin-top: 40px;
-        display: flex;
         flex-direction: row;
-        justify-content: flex-start;
         margin-left: 0;
         width: 90%;
         justify-content: space-between;
@@ -157,10 +157,8 @@ a { text-decoration: none; color: inherit; }
 
 @include m.media-breakpoint(lg) {
     .footer-grid {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
+        grid-template-columns: 160px 1fr 1fr 204px;
+        grid-template-areas: "logo nav contacts cta";
         gap: 80px;
     }
 
@@ -168,10 +166,12 @@ a { text-decoration: none; color: inherit; }
         width: 66%;
     }
 
-    .logo { order: 0; flex: 0 0 160px; }
-    .nav-links { order: 0; flex: 1; }
-    .footer-contacts { order: 0; flex: 1; }
-    .cta-button { order: 0; flex: 0 0 204px; }
+    .logo,
+    .nav-links,
+    .footer-contacts,
+    .cta-button {
+        width: auto;
+    }
 }
 
 .copyright,

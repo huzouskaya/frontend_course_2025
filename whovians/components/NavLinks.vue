@@ -1,8 +1,8 @@
 <template>
     <ul class="nav-links">
-        <li><a href="#">Реализованные проекты</a></li>
-        <li><a href="#">Новости</a></li>
-        <li><a href="#">Контакты</a></li>
+        <li><NuxtLink to="/">Реализованные проекты</NuxtLink></li>
+        <li><NuxtLink to="/news">Новости</NuxtLink></li>
+        <li><NuxtLink to="/contacts">Контакты</NuxtLink></li>
     </ul>
 </template>
 

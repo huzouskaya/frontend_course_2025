@@ -48,6 +48,30 @@
     }
 }
 
+@mixin pagination-button($bg-color, $text-color, $has-border: true) {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $bg-color;
+    color: $text-color;
+    border-radius: 16px;
+    font-family: var(--font-sec);
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    line-height: 1;
+
+    @if $has-border {
+        border: 1px solid #e0e0e0;
+    } @else {
+        border: none;
+    }
+}
+
 @mixin flex-center($direction: row) {
     display: flex;
     align-items: center;
@@ -62,7 +86,7 @@ $grid-breakpoints: (
     xs: 0,
     sm: 576px,
     md: 768px,
-    lg: 987px,
+    lg: 991px,
     xl: 1100px
 );
 

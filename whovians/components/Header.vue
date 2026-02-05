@@ -10,23 +10,26 @@
 
     <nav class="nav">
       <div class="logo">
-        <img src="/images/logo.svg" alt="zagdom" width="160" height="39" loading="lazy" />
+        <NuxtLink to="/">
+          <img src="/images/logo.svg" alt="zagdom" width="160" height="39" loading="lazy" />
+        </NuxtLink>
       </div>
 
       <div class="nav-right">
         <div class="desktop-only">
           <ul class="nav-menu">
-            <li><a href="#">Реализованные проекты</a></li>
-            <li><a href="#">Новости</a></li>
-            <li><a href="#">Контакты</a></li>
+            <li><NuxtLink to="/">Реализованные проекты</NuxtLink></li>
+            <li><NuxtLink to="/news">Новости</NuxtLink></li>
+            <li><NuxtLink to="/contacts">Контакты</NuxtLink></li>
           </ul>
         </div>
         <div class="header-contacts">
           <div class="phone">
             <img src="/images/phone.svg" alt="phone" width="16" height="16" loading="lazy" />
-            +7 (900) 900-90-90
+            <a :href='`tel:${phone.value}`'>{{ phone.label }}</a>
           </div>
-          <button class="cta-button">Оставить заявку</button>
+          <button class="cta-button" @click="isDialogOpen = true">Оставить заявку</button>
+          <Dialog v-model:open="isDialogOpen" />
         </div>
 
         <label for="drawer-toggle" class="menu-toggle">
@@ -53,11 +56,14 @@
 
 <script setup>
 import { ref, watch, onUnmounted } from 'vue'
+import Dialog from './Dialog.vue'
 import NavLinks from './NavLinks.vue'
 import ContactItems from './ContactItems.vue'
+import { mockContacts } from '../mock/contacts.js'
+
+const { phone } = mockContacts
 
 const drawerOpen = ref(false)
-
 watch(drawerOpen, (newVal) => {
   document.body.classList.toggle('no-scroll', newVal)
 })
@@ -65,12 +71,18 @@ watch(drawerOpen, (newVal) => {
 onUnmounted(() => {
   document.body.classList.remove('no-scroll')
 })
+
+const isDialogOpen = ref(false)
 </script>
 
 <style scoped lang="scss">
 @use '../assets/scss/mixins' as m;
 
 * { box-sizing: border-box; }
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
 .header {
   width: 100%;
@@ -209,6 +221,7 @@ onUnmounted(() => {
   }
 
   .desktop-only {
+    margin-right: 50px;
     display: flex;
     align-items: center;
     gap: 16px;
@@ -228,7 +241,7 @@ onUnmounted(() => {
   .phone {
     display: flex;
     align-items: center;
-    @include m.text-style(var(--font-prim), 14px, 400, 1.2, #254741);
+    @include m.text-style(var(--font-prim), 14px, 400, 1.2, var(--description-text-color));
     gap: 6px;
   }
 }
@@ -294,6 +307,15 @@ onUnmounted(() => {
   .nav-menu a {
     @include m.text-style(var(--font-sec), 16px, 400, 1.2, var(--description-text-color));
     text-decoration: none;
+
+    &:hover {
+      color: var(--main-color);
+    }
+
+    &.router-link-active {
+      color: var(--main-color);
+      font-weight: 600;
+    }
   }
 
   .header-contacts {

@@ -2,7 +2,7 @@
     <div class="contact-items" :class="variant">
         <div class="contact-item">
             <img src="/images/phone.svg" alt="Телефон" class="icon" />
-            <a :href="`tel:${phone}`">{{ phone }}</a>
+            <a :href="`tel:${phone.value}`">{{ phone.label }}</a>
         </div>
         <div class="contact-item">
             <img src="/images/email.svg" alt="Email" class="icon" />
@@ -19,12 +19,7 @@
 </template>
 
 <script setup>
-const phone = '+7 (900) 900-90-90'
-const email = 'info@gmail.com'
-const address = {
-    city: 'г. Владивосток',
-    street: 'ул. Выселковая 49, стр. 3'
-}
+import { mockContacts } from '../mock/contacts.js'
 
 const props = defineProps({
     variant: {
@@ -32,6 +27,8 @@ const props = defineProps({
         default: 'default'
     }
 })
+
+const { phone, email, address } = mockContacts
 </script>
 
 <style scoped>

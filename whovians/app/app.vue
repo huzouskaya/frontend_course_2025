@@ -1,12 +1,9 @@
 <template>
   <div class="page-wrapper">
     <Header />
-    <main class="main-content">
-      <Slider />
-      <Stats />
-      <Projects />
-      <News />
-    </main>
+    <div class="main">
+      <NuxtPage />
+    </div>
     <Footer />
   </div>
 </template>
@@ -14,10 +11,6 @@
 <script setup>
 import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
-import Slider from '../components/Slider.vue'
-import Stats from '../components/Stats.vue'
-import Projects from '../components/Projects.vue'
-import News from '../components/News.vue'
 </script>
 
 <style>
@@ -72,5 +65,10 @@ body {
 
 .no-scroll {
   overflow: hidden;
+}
+
+.main {
+  flex: 1;
+  padding: 2rem 0;
 }
 </style>
