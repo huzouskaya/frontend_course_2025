@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import NewsItem from '../../components/NewsItem.vue'
 import Pagination from '../../components/Pagination.vue'
+import Breadcrumbs from '../../components/Breadcrumbs.vue'
 import { newsData } from '../../data/news.js'
 
 const itemsPerPage = 12

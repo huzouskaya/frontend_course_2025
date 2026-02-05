@@ -45,7 +45,9 @@ const news = [
     <div class="news">
         <div class="news-set">
             <h2>Новости</h2>
-            <a href="#" class="news-button">Все новости</a>
+            <NuxtLink to="/news">
+                <div class="news-button">Все новости</div>
+            </NuxtLink>
         </div>
         <div class="news-list">
             <NewsItem
