@@ -2,15 +2,13 @@
 import NavLinks from './NavLinks.vue'
 import ContactItems from './ContactItems.vue'
 import logoSvg from '../public/images/logo.svg?raw'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
+import Dialog from './Dialog.vue'
 
 const logoSrc = computed(() => {
     const whiteSvg = logoSvg.replace(/#254741/g, '#FFFFFF')
     return `data:image/svg+xml;base64,${btoa(whiteSvg)}`
 })
-
-import { ref } from 'vue'
-import Dialog from './Dialog.vue'
 
 const isDialogOpen = ref(false)
 </script>
@@ -18,29 +16,22 @@ const isDialogOpen = ref(false)
 <template>
     <footer class="footer">
         <div class="footer-grid">
-            <div class="logo">
-                <NuxtLink to="/">
-                    <img :src="logoSrc" alt="загдом" class="logo-icon" />
-                </NuxtLink>
-            </div>
-            <NavLinks class="nav-links" />
-            <ContactItems class="footer-contacts" />
-            <button class="cta-button" @click="isDialogOpen = true">Оставить заявку</button>
+        <div class="logo">
+            <img :src="logoSrc" alt="загдом" class="logo-icon" />
         </div>
 
-        <div class="footer-bottom">
-            <div class="footer-items">
-                <p class="copyright">© Загдом, 2021</p>
-                <p class="policy">Политика конфиденциальности</p>
-                <p class="agreement">Пользовательское соглашение</p>            
-            </div>
+        <NavLinks class="nav-links" />
+
+        <ContactItems class="footer-contacts" />
+
+        <button class="cta-button" @click="isDialogOpen = true">Оставить заявку</button>
+
+        <div class="copyright">© Загдом, 2021</div>
+        <div class="policy">Политика конфиденциальности</div>
+        <div class="agreement">Пользовательское соглашение</div>
         </div>
 
-        <Dialog
-            v-model:open="isDialogOpen"
-            title=""
-            description=""
-        />
+        <Dialog v-model:open="isDialogOpen" />
     </footer>
 </template>
 
@@ -51,56 +42,66 @@ const isDialogOpen = ref(false)
 a { text-decoration: none; color: inherit; }
 
 .footer {
-    background: #254741;
+    background: var(--dark-main-color);
     color: white;
     padding: 40px 24px 32px;
     width: 100%;
 }
 
-.footer-bottom {
-    margin: 0 auto;
-    @include m.media-breakpoint(lg) {
-        width: 95%;
-    }
-}
-
-.footer-grid,
-.footer-items {
-    max-width: 1264px;
-    margin: 0 auto;
-}
-
-.footer-items {
-    margin-top: 24px;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 14px;
-    line-height: 1.2;
-    font-family: var(--font-sec);
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
 .footer-grid {
     display: grid;
     gap: 32px;
-    align-items: start;
+    max-width: 1264px;
+    margin: 0 auto;
+
     grid-template-areas:
         "logo"
+        "cta"
         "nav"
         "contacts"
-        "cta";
+        "copyright"
+        "policy"
+        "agreement";
+
+    @include m.media-breakpoint(sm) {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+        "logo cta"
+        "nav contacts"
+        "copyright copyright"
+        "policy agreement";
+    }
+
+    @include m.media-breakpoint(lg) {
+        grid-template-columns: 160px 1fr 1fr 204px;
+        grid-template-areas:
+        "logo nav contacts cta"
+        "copyright policy agreement .";
+        gap: 80px;
+    }
 }
 
 .logo { grid-area: logo; }
+.cta-button { grid-area: cta; }
 .nav-links { grid-area: nav; }
 .footer-contacts { grid-area: contacts; }
-.cta-button { grid-area: cta; }
+.copyright { grid-area: copyright; }
+.policy { grid-area: policy; }
+.agreement { grid-area: agreement; }
+
+.logo-icon {
+    width: 160px;
+    height: 39px;
+    display: block;
+}
 
 .cta-button {
     @include m.button-style(var(--main-color), #ffffff, 204px, 49px);
     padding: 16px 40px;
+    width: 100%;
+    @include m.media-breakpoint(lg) {
+        width: auto;
+    }
 }
 
 .nav-links {
@@ -112,14 +113,14 @@ a { text-decoration: none; color: inherit; }
     gap: 24px;
 }
 
+.nav-links :deep(a) {
+    @include m.text-style(var(--font-sec), 16px, 400, 1.2, #ffffff);
+}
+
 .footer-contacts {
     display: flex;
     flex-direction: column;
     gap: 24px;
-}
-
-.nav-links :deep(a) {
-    @include m.text-style(var(--font-sec), 16px, 400, 1.2, #ffffff);
 }
 
 .footer-contacts :deep(.contact-item) {
@@ -134,53 +135,13 @@ a { text-decoration: none; color: inherit; }
     flex-shrink: 0;
 }
 
-.logo-icon {
-    width: 160px;
-    height: 39px;
-    display: block;
-}
-
-@include m.media-breakpoint(sm) {
-    .footer-grid {
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas:
-        "logo cta"
-        "nav contacts";
-    }
-}
-
-@include m.media-breakpoint(md) {
-    .footer-items {
-        margin-top: 40px;
-        flex-direction: row;
-        margin-left: 0;
-        width: 90%;
-        justify-content: space-between;
-    }
-}
-
-@include m.media-breakpoint(lg) {
-    .footer-grid {
-        grid-template-columns: 160px 1fr 1fr 204px;
-        grid-template-areas: "logo nav contacts cta";
-        gap: 80px;
-    }
-
-    .footer-items {
-        width: 66%;
-    }
-
-    .logo,
-    .nav-links,
-    .footer-contacts,
-    .cta-button {
-        width: auto;
-    }
-}
-
 .copyright,
 .policy,
 .agreement {
     margin: 0;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    font-family: var(--font-sec);
+    line-height: 1.2;
 }
 </style>

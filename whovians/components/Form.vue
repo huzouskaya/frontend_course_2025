@@ -1,74 +1,113 @@
 <script setup>
-    import { useForm } from 'vee-validate'
-    import { toTypedSchema } from '@vee-validate/zod'
-    import * as zod from 'zod'
+import { ref } from 'vue'
+import { useForm, defineField } from 'vee-validate'
+import { toTypedSchema } from '@vee-validate/zod'
+import * as z from 'zod'
+import { vMaska } from 'maska/vue'
 
-    const emit = defineEmits(['submit'])
+const emit = defineEmits(['submit'])
 
-    const schema = toTypedSchema(
-    zod.object({
-        name: zod.string().min(2, 'Имя должно быть от 2 букв').nonempty('Обязательное поле'),
-        phone: zod.string().regex(/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/, 'Неверный формат телефона').nonempty('Обязательное поле'),
-        comment: zod.string().optional()
-    })
-    )
+// Схема валидации с Zod (как в презентации)
+const validationSchema = toTypedSchema(
+  z.object({
+    name: z
+      .string()
+      .min(1, 'Обязательное поле')
+      .min(2, 'Имя должно быть от 2 букв'),
+    phone: z
+      .string()
+      .min(1, 'Обязательное поле')
+      .refine(
+        (value) => {
+          const digits = value.replace(/\D/g, '')
+          return digits.length === 11
+        },
+        { message: 'Введите телефон полностью' }
+      ),
+    comment: z.string().optional()
+  })
+)
 
-    const { handleSubmit, values, errors } = useForm({
-    validationSchema: schema,
-    initialValues: {
-        name: '',
-        phone: '',
-        comment: ''
-    }
-    })
+// Инициализация формы (ошибки показываются только при сабмите)
+const { errors, handleSubmit, meta } = useForm({
+  validationSchema,
+  initialValues: {
+    name: '',
+    phone: '',
+    comment: ''
+  },
+  // Важно: ошибки не показываются сразу
+  validateOnMount: false,
+  validateOnBlur: false,
+  validateOnChange: false
+})
 
-    const onSubmit = handleSubmit((data) => {
-    emit('submit', data)
-    })
+// Определяем поля с помощью defineField (как в презентации)
+const [name, nameAttrs] = defineField('name')
+const [phone, phoneAttrs] = defineField('phone')
+const [comment, commentAttrs] = defineField('comment')
+
+// Функция отправки формы
+const onSubmit = handleSubmit((values) => {
+  // Очищаем телефон от маски
+  const cleanedData = {
+    ...values,
+    phone: values.phone.replace(/\D/g, '')
+  }
+  
+  emit('submit', cleanedData)
+  
+  // Сброс формы после отправки (опционально)
+  // resetForm()
+})
 </script>
 
 <template>
-    <form @submit.prevent="onSubmit" class="app-form">
-        <div class="title">Оставить заявку</div>
-        <div class="field">
-            <input
-                v-model="values.name"
-                type="text"
-                :class="{ error: errors.name }"
-                placeholder="Имя"
-            />
-            <span v-if="errors.name" class="error">{{ errors.name }}</span>
-        </div>
+  <form @submit.prevent="onSubmit" class="app-form" novalidate>
+    <div class="title">Оставить заявку</div>
 
-        <div class="field">
-            <input
-                v-maska
-                data-maska="+7 (###) ###-##-##"
-                v-model="values.phone"
-                type="tel"
-                :class="{ error: errors.phone }"
-                placeholder="Телефон"
-            />
-            <span v-if="errors.phone" class="error">{{ errors.phone }}</span>
-        </div>
+    <div class="field">
+      <input
+        v-model="name"
+        v-bind="nameAttrs"
+        type="text"
+        :class="{ error: errors.name }"
+        placeholder="Имя"
+      />
+      <span v-if="errors.name" class="error">{{ errors.name }}</span>
+    </div>
 
-        <div class="field">
-            <textarea
-                v-model="values.comment"
-                placeholder="Сообщение"
-                rows="4"
-            ></textarea>
-        </div>
+    <div class="field">
+      <input
+        v-maska
+        data-maska="+7 (###) ###-##-##"
+        v-model="phone"
+        v-bind="phoneAttrs"
+        type="tel"
+        :class="{ error: errors.phone }"
+        placeholder="+7 (___) ___-__-__"
+      />
+      <span v-if="errors.phone" class="error">{{ errors.phone }}</span>
+    </div>
 
-        <button type="submit" class="btn-submit">Оставить заявку</button>
+    <div class="field">
+      <textarea
+        v-model="comment"
+        v-bind="commentAttrs"
+        placeholder="Сообщение"
+        rows="4"
+      ></textarea>
+    </div>
 
-        <p class="agreement-text">
-        Нажимая на кнопку «Отправить заявку», вы принимаете
-        <a href="#" class="link">пользовательское соглашение</a>
-        и
-        <a href="#" class="link">политику конфиденциальности</a>
-        </p>
-    </form>
+    <button type="submit" class="btn-submit">Оставить заявку</button>
+
+    <p class="agreement-text">
+      Нажимая на кнопку «Отправить заявку», вы принимаете
+      <a href="#" class="link">пользовательское соглашение</a>
+      и
+      <a href="#" class="link">политику конфиденциальности</a>
+    </p>
+  </form>
 </template>
 
 <style scoped lang="scss">
@@ -122,6 +161,8 @@
         font-size: 12px;
         font-family: var(--font-sec);
         margin-top: 4px;
+        display: block;
+        min-height: 16px;
     }
 }
 
