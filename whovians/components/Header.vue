@@ -318,7 +318,6 @@ a {
 
     &.router-link-active {
       color: var(--main-color);
-      font-weight: 600;
     }
   }
 
