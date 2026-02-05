@@ -306,7 +306,6 @@ const isDialogOpen = ref(false)
 
     &.router-link-active {
       color: var(--main-color);
-      font-weight: 600;
     }
   }
 
