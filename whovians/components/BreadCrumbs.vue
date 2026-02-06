@@ -23,14 +23,14 @@ const props = defineProps({
 </template>
 
 <style scoped lang="scss">
+@use '../assets/scss/mixins' as m;
 .breadcrumbs {
     width: 90%;
     max-width: 1264px;
     margin: 0 auto 2rem;
     display: flex;
-    font-family: var(--font-sec);
-    font-size: 20px;
-    color: var(--text-color-sec);
+
+    @include m.text-style(var(--font-sec), 20px, 400, 1.35, var(--text-color-sec));
 
     .breadcrumb-link {
         text-decoration: none;

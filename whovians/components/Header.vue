@@ -29,7 +29,11 @@
             <a :href='`tel:${phone.value}`'>{{ phone.label }}</a>
           </div>
           <button class="cta-button" @click="isDialogOpen = true">Оставить заявку</button>
-          <Dialog v-model:open="isDialogOpen" />
+          <Dialog
+            v-model:open="isDialogOpen"
+            title=""
+            description=""
+          />
         </div>
 
         <label for="drawer-toggle" class="menu-toggle">
@@ -314,7 +318,6 @@ a {
 
     &.router-link-active {
       color: var(--main-color);
-      font-weight: 600;
     }
   }
 

@@ -79,6 +79,7 @@ const news = [
     width: 90%;
     display: grid;
     grid-template-columns: 1fr;
+    grid-template-rows: minmax(200px, auto);
     gap: 32px;
     overflow: auto;
     margin: 0 auto; 
@@ -98,6 +99,7 @@ const news = [
 @include m.media-breakpoint(sm) {
     .news-list {
         grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: minmax(200px, auto) 0px;
     }
 }
 
@@ -107,12 +109,14 @@ const news = [
     }
     .news-list {
         grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: minmax(200px, auto) 0px 0px;
     }
 }
 
 @include m.media-breakpoint(lg) {
     .news-list {
         grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: minmax(200px, auto) 0px 0px 0px;
     }
 }
 </style>
