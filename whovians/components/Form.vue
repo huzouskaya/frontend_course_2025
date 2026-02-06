@@ -1,13 +1,12 @@
 <script setup>
 import { ref } from 'vue'
-import { useForm, defineField } from 'vee-validate'
+import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import * as z from 'zod'
 import { vMaska } from 'maska/vue'
 
 const emit = defineEmits(['submit'])
 
-// Схема валидации с Zod (как в презентации)
 const validationSchema = toTypedSchema(
     z.object({
         name: z
@@ -28,7 +27,7 @@ const validationSchema = toTypedSchema(
     })
 )
 
-const { errors, handleSubmit, meta } = useForm({
+const { errors, handleSubmit, defineField } = useForm({
     validationSchema,
     initialValues: {
         name: '',
